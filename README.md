@@ -1,6 +1,6 @@
 # Refactoring kurs
 
-Beskrivning
+## Beskrivning
 
 Semnarium för dig som tittat i Refactoring-menyn och känner på dig att det finns
 betydligt mer bortom "Rename". Genom konkreta demo och praktiska övningar
@@ -9,15 +9,21 @@ för diskussioner om pragmatik och filosofi.
 
 Tid: 4h
 
-Agenda (avsett för läraren)
+## Instruktion (för deltagaren)
 
-Vad betyder refactoring? 
+Labbkoden finns i form av ett maven-projekt definierat av pom.xml
+
+För att öppna i IntelliJ: välj "Import Project" och markera biblioteket "refactoring-lab", importera som Maven-projekt
+
+Kör enhetstestet i CustomerTest.
+
+## Agenda (avsett för läraren)
+
+### Vad betyder refactoring? 
 
 * Fångar insikter.
 
-Demo
-
-Fowler-katan
+### Fowler-katan
 
 (dema 10 min, disussion, dema 10 min, diskussion, dema 10 min, diskussion)
 
@@ -53,16 +59,14 @@ pilla ut "totalFrequentRenterPoints" på samma sätt
 
 Överkurs: Bygg om looparn till stream().mapToInt().sum(). (Inbyggd refaktorisering)
 
-DONE
+### Övning: Börja från början, kör på egen hand parvis.
 
-Övning: Börja från början, kör på egen hand parvis.
-
-Wrapup: Skriv ner tre saker du skulle vilja komma ihåg
+### Wrapup: Skriv ner tre saker du skulle vilja komma ihåg
 
 (2h)
 (Paus)
 
-Repetition: en sak du ville komma ihåg
+### Repetition: en sak du ville komma ihåg
 
 _Movie med subklasser_
 
@@ -84,7 +88,7 @@ Rensa
 Nu kan vi göra Movie abstrakt - vi bör inte skapa objekt av den.
 Nu kan vi ta bort price-metodens implmentation (som ändå är bisarr, gratis) - abstract
 
-Övning - gör själva parvis
+### Övning - gör själva parvis
 
 Begränsning -> film kan inte byta kategori under sin livstid.
 Kan illustreras genom att ta bort setPriceCategory.
@@ -98,4 +102,5 @@ Dela upp i olika implementationer.
 Extract interface ChargeFor
 
 (om 0900-1300 är lagom med lunch här)
-Sammanfattning - en punkt från varje deltagare
+
+### Sammanfattning - en punkt från varje deltagare
