@@ -1,4 +1,3 @@
-import java.security.PrivateKey;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +32,7 @@ public class Customer {
                     break;
                 case Movie.NEW_RELEASE:
                     thisAmount += each.getDaysRented() * 3;
-                    break;https://github.com/Omegapoint/refactoring-lab.git
+                    break;
                 case Movie.CHILDRENS:
                     thisAmount += 1.5;
                     if(each.getDaysRented() > 3)
