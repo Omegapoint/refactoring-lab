@@ -33,17 +33,17 @@ public class Customer {
         String rentalTitleAndCharges = "";
         for (Rental rental : rentals) {
             // show figures for this rental
-            rentalTitleAndCharges += "\t" + rental.getMovie().getTitle() + "\t" + String.valueOf(rental.charge()) + "\n";
+            rentalTitleAndCharges += "\t" + rental.getMovie().getTitle() + "\t" + String.valueOf(rental.movie.charge(rental.getDaysRented())) + "\n";
         }
         return rentalTitleAndCharges;
     }
 
     private int totalFrequentRenterPoints() {
         // add frequent renter points
-        return rentals.stream().mapToInt(Rental::frequentRenterPoints).sum();
+        return rentals.stream().mapToInt(rental -> rental.frequentRenterPoints()).sum();
     }
 
     private double totalAmount() {
-        return rentals.stream().mapToDouble(Rental::charge).sum();
+        return rentals.stream().mapToDouble(rental -> rental.getMovie().charge(rental.getDaysRented())).sum();
     }
 }
