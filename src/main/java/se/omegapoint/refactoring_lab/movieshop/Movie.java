@@ -35,8 +35,7 @@ public class Movie {
                     thisAmount += (daysRented - 2) * 1.5;
                 break;
             case NEW_RELEASE:
-                thisAmount += daysRented * 3;
-                break;
+                throw new IllegalStateException();
             case CHILDRENS:
                 throw new IllegalStateException();
         }
