@@ -38,10 +38,7 @@ public class Movie {
                 thisAmount += daysRented * 3;
                 break;
             case CHILDRENS:
-                thisAmount += 1.5;
-                if(daysRented > 3)
-                    thisAmount += (daysRented - 3) * 1.5;
-                break;
+                throw new IllegalStateException();
         }
         return thisAmount;
     }
