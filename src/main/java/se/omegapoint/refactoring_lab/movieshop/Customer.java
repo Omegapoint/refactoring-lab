@@ -23,7 +23,6 @@ public class Customer {
         int frequentRenterPoints = 0;
         for (Rental rental : rentals) {
             // add frequent renter points
-
             frequentRenterPoints += rental.frequentRenterPoints();
         }
 
@@ -33,14 +32,18 @@ public class Customer {
             result += "\t" + rental.getMovie().getTitle() + "\t" + String.valueOf(rental.charge()) + "\n";
         }
 
+        // add footer line
+        result += "Amount owed is " + String.valueOf(totalAmount()) + "\n";
+        result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
+        return result;
+    }
+
+    private double totalAmount() {
         double totalAmount = 0;
         for (Rental rental : rentals) {
             totalAmount += rental.charge();
         }
-        // add footer line
-        result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
-        result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
-        return result;
+        return totalAmount;
     }
 
 }
