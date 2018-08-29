@@ -24,7 +24,6 @@ public class Customer {
         int frequentRenterPoints = 0;
         String result = "Rental Record for " + getName() + "\n";
         for(Rental each : rentals) {
-            double thisAmount = each.charge();
             // add frequent renter points
             frequentRenterPoints++;
             // add bonus for two days new release rental
@@ -32,8 +31,8 @@ public class Customer {
                 frequentRenterPoints++;
 
             // show figures for this rental
-            result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(thisAmount) + "\n";
-            totalAmount += thisAmount;
+            result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.charge()) + "\n";
+            totalAmount += each.charge();
         }
         // add footer line
         result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
