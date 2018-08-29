@@ -78,6 +78,7 @@ Skjut price/amount vidare från Rental till Movie
 Skapa subklass ChildrenMovie
 Kopiera hela price-metoden från Movie till ChildrenMovie
 Visa att det är ChildrenMovie.price som körs genom att ändra gränsen för rabatt
+Eller lägg till en exception för typen CHILDREN.
 Rensa ChildrenMovie.price från de andra casen.
 Rensa Movie.price från Children-case
 (notera likheten med "pilla isär loop")
