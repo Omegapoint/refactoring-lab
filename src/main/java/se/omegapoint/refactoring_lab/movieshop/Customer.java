@@ -1,3 +1,5 @@
+package se.omegapoint.refactoring_lab.movieshop;
+
 import java.util.ArrayList;
 import java.util.List;
 

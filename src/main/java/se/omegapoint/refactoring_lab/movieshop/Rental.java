@@ -1,3 +1,5 @@
+package se.omegapoint.refactoring_lab.movieshop;
+
 public class Rental {
     private Movie movie;
     private int daysRented;
