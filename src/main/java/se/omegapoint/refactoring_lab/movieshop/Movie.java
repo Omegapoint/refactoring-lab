@@ -1,6 +1,6 @@
 package se.omegapoint.refactoring_lab.movieshop;
 
-public class Movie {
+public abstract class Movie {
     public static final int CHILDRENS = 2;
     public static final int REGULAR = 0;
     public static final int NEW_RELEASE = 1;
@@ -25,17 +25,5 @@ public class Movie {
         return title;
     }
 
-    public double charge(int daysRented) {
-        double thisAmount = 0;
-        // determine amount for each line
-        switch (getPriceCode()) {
-            case REGULAR:
-                throw new IllegalStateException();
-            case NEW_RELEASE:
-                throw new IllegalStateException();
-            case CHILDRENS:
-                throw new IllegalStateException();
-        }
-        return thisAmount;
-    }
+    public abstract double charge(int daysRented);
 }
