@@ -2,7 +2,12 @@ package se.omegapoint.refactoring_lab.movieshop;
 
 public class ChildrensMovie extends Movie {
     public ChildrensMovie(String title) {
-        super(title, CHILDRENS);
+        super(title);
+    }
+
+    @Override
+    public int getPriceCode() {
+        return CHILDRENS;
     }
 
     public double charge(int daysRented) {

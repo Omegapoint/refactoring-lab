@@ -3,7 +3,12 @@ package se.omegapoint.refactoring_lab.movieshop;
 public class RegularMovie extends Movie {
 
     public RegularMovie(String title) {
-        super(title, REGULAR);
+        super(title);
+    }
+
+    @Override
+    public int getPriceCode() {
+        return REGULAR;
     }
 
     public double charge(int daysRented) {

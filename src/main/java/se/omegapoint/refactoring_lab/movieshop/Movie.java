@@ -6,24 +6,16 @@ public abstract class Movie {
     public static final int NEW_RELEASE = 1;
 
     private String title;
-    private int priceCode;
 
-    public Movie(String title, int priceCode) {
+    public Movie(String title) {
         this.title = title;
-        this.priceCode = priceCode;
-    }
-
-    public int getPriceCode() {
-        return priceCode;
-    }
-
-    public void setPriceCode(int priceCode) {
-        this.priceCode = priceCode;
     }
 
     public String getTitle() {
         return title;
     }
+
+    public abstract int getPriceCode();
 
     public abstract double charge(int daysRented);
 }
