@@ -10,7 +10,7 @@ public class CustomerTest {
         Customer tolvan = new Customer("Tolvan");
         tolvan.addRental(new Rental(new NewRelaseMovie("Fast and Furious 4711"),2));
         tolvan.addRental(new Rental(new ChildrensMovie("Toy Story 17"),5));
-        tolvan.addRental(new Rental(new Movie("Casa Blanca", Movie.REGULAR),1));
+        tolvan.addRental(new Rental(new RegularMovie("Casa Blanca"),1));
         String expected =
                 "Rental Record for Tolvan\n" +
                 "\tFast and Furious 4711\t6.0\n" +

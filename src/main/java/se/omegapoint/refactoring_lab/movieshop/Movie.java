@@ -30,10 +30,7 @@ public class Movie {
         // determine amount for each line
         switch (getPriceCode()) {
             case REGULAR:
-                thisAmount += 2;
-                if (daysRented > 2)
-                    thisAmount += (daysRented - 2) * 1.5;
-                break;
+                throw new IllegalStateException();
             case NEW_RELEASE:
                 throw new IllegalStateException();
             case CHILDRENS:
