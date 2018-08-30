@@ -17,13 +17,16 @@ För att öppna i IntelliJ: välj "Import Project" och markera biblioteket "refa
 
 Kör enhetstestet i CustomerTest.
 
-## Agenda (avsett för läraren)
+# Agenda (avsett för läraren)
 
-### Vad betyder refactoring? 
+## Vad betyder refactoring? 
 
+* Funktionellt säkra förändringar av kod.
 * Fångar insikter.
 
-### Fowler-katan
+## Fowler-katan
+
+### Genomgång (30 min)
 
 (dema 10 min, disussion, dema 10 min, diskussion, dema 10 min, diskussion)
 
@@ -59,14 +62,19 @@ pilla ut "totalFrequentRenterPoints" på samma sätt
 
 Överkurs: Bygg om looparn till stream().mapToInt().sum(). (Inbyggd refaktorisering)
 
-### Övning: Börja från början, kör på egen hand parvis.
+### Övning (1h)
 
-### Wrapup: Skriv ner tre saker du skulle vilja komma ihåg
+Börja från början, kör på egen hand parvis.
 
-(2h)
-(Paus)
+### Sammanfattning
+
+Skriv ner tre saker du skulle vilja komma ihåg
+
+### Paus (15 min)
 
 ### Repetition: en sak du ville komma ihåg
+
+## Genomgång (30 min)
 
 _Movie med subklasser_
 
@@ -89,11 +97,15 @@ Rensa
 Nu kan vi göra Movie abstrakt - vi bör inte skapa objekt av den.
 Nu kan vi ta bort price-metodens implmentation (som ändå är bisarr, gratis) - abstract
 
-### Övning - gör själva parvis
-
 Begränsning -> film kan inte byta kategori under sin livstid.
 Kan illustreras genom att ta bort setPriceCategory.
 getPriceCategory kan returnera konstant; constructor parameter försvinner. 
+
+### Övning (1h)
+
+Gör själva parvis.
+
+## Alternativ till del 2
 
 (Istället - Movie har PriceCategory, strategy-pattern)
 (Övning - refactorera mot detta mål.)
@@ -102,6 +114,8 @@ Flytta initiering till konstruktor; extrahera parameter; titta i testet!
 Dela upp i olika implementationer.
 Extract interface ChargeFor
 
-(om 0900-1300 är lagom med lunch här)
+## Sammanfattning 
 
-### Sammanfattning - en punkt från varje deltagare
+En punkt från varje deltagare
+
+
