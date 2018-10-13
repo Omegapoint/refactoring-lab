@@ -20,25 +20,24 @@ Kör enhetstestet i CustomerTest.
 ## Del 1: Dela upp och och organisera om koden i statement-metoden
 
 - Extrahera metod för prisberäkning; amountFor
--
--
+- ...
 
 Kodlukter:
 
-- Långa metoder
-- Dataavundsjuka
+- Lång metod
+- Stor klass
+- Funktionsavundsjuka
 - Tillfälliga variabler
-- Sidoeffekter
 
 ## Del 2: Isolera prisberäkningen.
 
 - Flytta metoden price/amount från Rental till Movie.
--
--
+- ...
 
 Kodlukter:
 
 - Switch-sats (https://refactoring.guru/smells/switch-statements)
+- Onödig intimitet
 
 ## Referenser
 
