@@ -1,32 +1,47 @@
 # Agenda (avsett för läraren)
 
+## Förväntningar
+
+Vad har du för förväntningar?
+Vad betyder det för dig?
+
 ## Vad betyder refactoring? 
 
 * Funktionellt säkra förändringar av kod.
-* Fångar insikter.
 
 ## Fowler-katan
+
+En lätt moderniserad version av av övnignen från Fowlers bok.
+Vad är en kata?
+
+"Kata är en rad förutbestämda rörelser, som utförs mot "osynliga" motståndare i luften.
+Ordets betydelse innebär att i träningens rörelsemönster eftersträva perfektion.
+Poängen med kata är att så grundligt lära in de tekniker som finns i katan,
+att de sedan snabbt och korrekt kan användas i en uppkommen nödvärns-situation eller tävling."
+
+Det är också ett släkte plattmaskar. Och ett vattendrag i Centralafrikanska republiken.
 
 ### Genomgång (30 min)
 
 (dema 10 min, disussion, dema 10 min, diskussion, dema 10 min, diskussion)
 
-switch priceCode => extract method "int amountFor(Rental)", för hand
+switch priceCode => extract method "int amountFor(Rental)", för hand.
 fel => double
-gör om refactoring från meny
-snygga upp parameter och "result"-var
+Gör om refactoring från meny.
+Snygga upp parameter (namnet) och "result"-variabel.
 
-data envy i amountFor
-move method till Rental - manuell, klipp ur method-body
-behåll delegerande metod i Customer
-rename - charge()
+data envy i amountFor.
+Flytta den nya metoden till Rental - manuell, klipp ur method-body.
+behåll delegerande metod i Customer.
+Byt namn till t.ex. charge().
 
 (10 min)
 
-i statement - "replace temp with query", dvs inline på "thisAmount"
+I statement - "replace temp with query", dvs inline på "thisAmount"
   (behövs egentligen inte göras än)
   kan motiveras av att man vill bryta ut metod "statementDetailsForRental"
 
+Byt ut ++ mot += för att göra algoritmen tydligare.
 i Customer.statement - frequentRenterPoint
 int thisFrequentRenterPoint
 ...
@@ -41,7 +56,7 @@ extract method som "totalCharge"
 
 pilla ut "totalFrequentRenterPoints" på samma sätt
 
-Överkurs: Bygg om looparn till stream().mapToInt().sum(). (Inbyggd refaktorisering)
+Överkurs: Bygg om looparna till stream().mapToInt().sum(). (Inbyggd refaktorisering)
 
 ### Övning (1h)
 

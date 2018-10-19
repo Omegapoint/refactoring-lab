@@ -16,3 +16,33 @@ Labbkoden finns i form av ett maven-projekt definierat av pom.xml
 För att öppna i IntelliJ: välj "Import Project" och markera biblioteket "refactoring-lab", importera som Maven-projekt
 
 Kör enhetstestet i CustomerTest.
+
+## Del 1: Dela upp och och organisera om koden i statement-metoden
+
+- Extrahera metod för prisberäkning; amountFor
+- ...
+
+Kodlukter:
+
+- Lång metod
+- Stor klass
+- Funktionsavundsjuka
+- Tillfälliga variabler
+
+## Del 2: Isolera prisberäkningen.
+
+- Flytta metoden price/amount från Rental till Movie.
+- ...
+
+Kodlukter:
+
+- Switch-sats (https://refactoring.guru/smells/switch-statements)
+- Onödig intimitet
+
+## Referenser
+
+- Martin Fowler: Refactoring: Improving the Design of Existing Code 1st Edition
+- Martin Fowler: Refactoring: Improving the Design of Existing Code (2nd Edition) (Släpps i december 2018)
+- Joshua Kerievsky: Refactoring to Patterns 1st Edition
+- https://refactoring.guru
+
