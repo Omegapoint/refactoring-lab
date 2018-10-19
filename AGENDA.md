@@ -118,5 +118,3 @@ En punkt från varje deltagare
 
 - Thread-safe refactoring
 - Reflection safe refactoring
-
-
