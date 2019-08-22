@@ -34,20 +34,64 @@ data envy i amountFor.
 Flytta den nya metoden till Rental - manuell, klipp ur method-body.
 behåll delegerande metod i Customer.
 Byt namn till t.ex. charge().
-
+```java
+double charge() {
+        double thisAmount = 0;
+        // determine amount for each line
+        switch (getMovie().getPriceCode()) {
+            case Movie.REGULAR:
+                thisAmount += 2;
+                if (getDaysRented() > 2)
+                    thisAmount += (getDaysRented() - 2) * 1.5;
+                break;
+            case Movie.NEW_RELEASE:
+                thisAmount += getDaysRented() * 3;
+                break;
+            case Movie.CHILDRENS:
+                thisAmount += 1.5;
+                if(getDaysRented() > 3)
+                    thisAmount += (getDaysRented() - 3) * 1.5;
+                break;
+        }
+        return thisAmount;
+    }
+```
 (10 min)
 
 I statement - "replace temp with query", dvs inline på "thisAmount"
   (behövs egentligen inte göras än)
   kan motiveras av att man vill bryta ut metod "statementDetailsForRental"
+```java
+        // show figures for this rental
+        result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getThisAmount()) + "\n";
+        totalAmount += each.getThisAmount();
+```
 
 Byt ut ++ mot += för att göra algoritmen tydligare.
 i Customer.statement - frequentRenterPoint
 int thisFrequentRenterPoint
 ...
 frequentRenterPoint += thisFrequentRenterPoint
+```java
+        // add frequent renter points
+        int tmpPoints = 0;
+        tmpPoints += 1;
+        // add bonus for two days new release rental
+        if((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDaysRented() > 1) {
+            tmpPoints += 1;
+        }
+        frequentRenterPoints += tmpPoints;
+
+```
+
  extract method på fyra rader om thisFrequentRenterPoint
 move method till Rental
+returnera olika beroende på villkor istället för att summera ihop och returnera resultatet
+```java
+    int getFrequentRentalPoints() {
+        return getMovie().getPriceCode() == Movie.NEW_RELEASE && getDaysRented() > 1 ? 2 : 1;
+    }
+```
 
 (10 min)
 
