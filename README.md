@@ -43,6 +43,7 @@ Kodlukter:
 
 - Martin Fowler: Refactoring: Improving the Design of Existing Code 1st Edition
 - Martin Fowler: Refactoring: Improving the Design of Existing Code (2nd Edition) (Släpps i december 2018)
+- https://refactoring.com/catalog
 - Joshua Kerievsky: Refactoring to Patterns 1st Edition
 - https://refactoring.guru
 
