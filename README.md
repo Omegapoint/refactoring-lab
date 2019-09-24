@@ -1,4 +1,4 @@
-# Refactoring kurs
+# Refaktorisering
 
 ## Beskrivning
 
