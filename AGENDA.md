@@ -11,7 +11,7 @@ Vad betyder det för dig?
 
 ## Fowler-katan
 
-En lätt moderniserad version av av övnignen från Fowlers bok.
+En lätt moderniserad version av av övningen från Fowlers bok.
 Vad är en kata?
 
 "Kata är en rad förutbestämda rörelser, som utförs mot "osynliga" motståndare i luften.
