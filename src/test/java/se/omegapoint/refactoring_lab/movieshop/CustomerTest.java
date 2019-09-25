@@ -8,7 +8,7 @@ public class CustomerTest {
     @Test
     public void testStatement() {
         Customer tolvan = new Customer("Tolvan");
-        tolvan.addRental(new Rental(new Movie("Fast and Furious 4711", Movie.NEW_RELEASE, new PriceCategoryImpl()),2));
+        tolvan.addRental(new Rental(new Movie("Fast and Furious 4711", Movie.NEW_RELEASE, new NewReleasePriceCategory()),2));
         tolvan.addRental(new Rental(new Movie("Toy Story 17", Movie.CHILDRENS, new ChildrensPriceCategory()),5));
         tolvan.addRental(new Rental(new Movie("Casa Blanca", Movie.REGULAR, new PriceCategoryImpl()),1));
         String expected =
