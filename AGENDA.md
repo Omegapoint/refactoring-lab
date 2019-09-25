@@ -1,15 +1,17 @@
 # Agenda (avsett för läraren)
 
-## Förväntningar
+## Presentera er! (5 min)
+
+## Förväntningar (10 min/15 min)
 
 Vad har du för förväntningar?
 Vad betyder det för dig?
 
-## Vad betyder refactoring? 
+## Vad betyder refaktorisering? (5 min/20 min)
 
 * Funktionellt säkra förändringar av kod.
 
-## Fowler-katan
+## Fowler-katan (5 min/25 min)
 
 En lätt moderniserad version av av övningen från Fowlers bok.
 Vad är en kata?
@@ -21,13 +23,13 @@ att de sedan snabbt och korrekt kan användas i en uppkommen nödvärns-situatio
 
 Det är också ett släkte plattmaskar. Och ett vattendrag i Centralafrikanska republiken.
 
-### Genomgång (30 min)
+### Genomgång (30 min/55 min)
 
 (dema 10 min, disussion, dema 10 min, diskussion, dema 10 min, diskussion)
 
 switch priceCode => extract method "int amountFor(Rental)", för hand.
-fel => double
-Gör om refactoring från meny.
+"Råka" göra fel och orsaka ett avrundningsfel => Rätta genom att göra om variabeln till en double.
+Gör om refaktorisering men från menyn.
 Snygga upp parameter (namnet) och "result"-variabel.
 
 data envy i amountFor.
@@ -95,12 +97,12 @@ returnera olika beroende på villkor istället för att summera ihop och returne
 
 (10 min)
 
-pilla isär loopen och pilla ut totalAmount-beräkningen till egen loop
-extract method som "totalCharge"
+Pilla isär loopen och pilla ut totalAmount-beräkningen till egen loop.
+Bryt ut metoden som "totalCharge"
 
-pilla ut "totalFrequentRenterPoints" på samma sätt
+Pilla ut "totalFrequentRenterPoints" på samma sätt.
 
-Överkurs: Bygg om looparna till stream().mapToInt().sum(). (Inbyggd refaktorisering)
+Överkurs: Bygg om looparna till stream().mapToInt().sum(). (Inbyggd refaktorisering).
 
 ### Övning (1h)
 
@@ -110,38 +112,46 @@ Börja från början, kör på egen hand parvis.
 
 Skriv ner tre saker du skulle vilja komma ihåg
 
-### Paus (15 min)
+### Paus (15 min/1h 10 min)
 
 ### Repetition: en sak du ville komma ihåg
 
-### Genomgång (30 min)
+### Genomgång (30 min/1h 40 min)
 
 Mål: Isolera prisberäkningen.
 
-Skjut price/amount vidare från Rental till Movie
-* inline av getMovie i Rental
-* move method trots att den vill ha "tillbaka" Rental-referens
+Inuti varje switch-sats finns några små klasser som vill komma ut.
+
+Skjut price/amount vidare från Rental till Movie.
+* Inline av getMovie i Rental.
+* Flytta metoden trots att den vill ha "tillbaka" Rental-referens.
 * I Movie.price(Rental) gör "introduce paramater" på "rental.getDaysRented()"
 
-Skapa subklass ChildrenMovie
-Kopiera hela price-metoden från Movie till ChildrenMovie
-Visa att det är ChildrenMovie.price som körs genom att ändra gränsen för rabatt
+Med strategi:
+
+
+
+Med arv:
+
+Skapa subklass ChildrenMovie.
+Kopiera hela price-metoden från Movie till ChildrenMovie.
+Visa att det är ChildrenMovie.price som körs genom att ändra gränsen för rabatt.
 Eller lägg till en exception för typen CHILDREN.
 Rensa ChildrenMovie.price från de andra casen.
-Rensa Movie.price från Children-case
+Rensa Movie.price från Children-case.
 (notera likheten med "pilla isär loop")
-Kopiera nu-reducerade pricemetoden från Movie till ny klass NewReleaseMovie
-Rensa
-Kopiera väldigt-reducerade pricemetoden från Movie till ny klass RegularMovie
-Rensa
+Kopiera nu-reducerade pricemetoden från Movie till ny klass NewReleaseMovie.
+Rensa.
+Kopiera väldigt-reducerade pricemetoden från Movie till ny klass RegularMovie.
+Rensa.
 Nu kan vi göra Movie abstrakt - vi bör inte skapa objekt av den.
-Nu kan vi ta bort price-metodens implmentation (som ändå är bisarr, gratis) - abstract
+Nu kan vi ta bort price-metodens implmentation (som ändå är bisarr, gratis) - abstract.
 
 Begränsning -> film kan inte byta kategori under sin livstid.
 Kan illustreras genom att ta bort setPriceCategory.
 getPriceCategory kan returnera konstant; constructor parameter försvinner. 
 
-### Övning (1h)
+### Övning (60 min/2h 40 min)
 
 Gör själva parvis.
 
@@ -154,7 +164,7 @@ Flytta initiering till konstruktor; extrahera parameter; titta i testet!
 Dela upp i olika implementationer.
 Extract interface ChargeFor
 
-## Sammanfattning 
+## Sammanfattning (20 min/3h)
 
 En punkt från varje deltagare
 
