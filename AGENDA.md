@@ -104,6 +104,8 @@ Pilla ut "totalFrequentRenterPoints" på samma sätt.
 
 Överkurs: Bygg om looparna till stream().mapToInt().sum(). (Inbyggd refaktorisering).
 
+Extrahera beskrivningsraderna och konvertera till stream.
+
 ### Övning (1h)
 
 Börja från början, kör på egen hand parvis.
@@ -129,7 +131,33 @@ Skjut price/amount vidare från Rental till Movie.
 
 Med strategi:
 
+(Istället - Movie har PriceCategory, strategy-pattern)
+(Övning - refactorera mot detta mål.)
 
+Extrahera anropet av getPriceCode i amount till en lokal variabel.
+Extrahera en tillfällig metod: amountForCategory
+Extrahera amountForCateory till delegat; PriceCategoryImpl.
+Gör amountForCategory publik annars går den inte att flytta till interfacet!
+Extrahera interface för PriceCatregoyImpl; PriceCategory.
+Glöm inte att ersätta med interface på alla ställen där det går.
+Flytta initieringen till constructor.
+
+Kopiera PriceCategoryImpl till ChildrensPriceCategory.
+Ändra i switch så att bara CHILDRENS price category accepteras.
+Ändra i parametern i konstruktorn i testet.
+
+Kopiera PriceCategoryImpl till NewRelasePriceCategory.
+Ändra i switch så att bara NEW_RELEASE price category accepteras.
+Ändra i parametern i konstruktorn i testet.
+
+Byt namn på PriceCategoryImpl till RegularPriceCategory.
+Ändra i switch så att bara REGULAR.
+
+Ta bort kontrollen av pricecode i alla price category implementationer.
+
+Ta bort parametern pricecode.
+
+Inför setPriceCategory i Movie?
 
 Med arv:
 
@@ -149,20 +177,11 @@ Nu kan vi ta bort price-metodens implmentation (som ändå är bisarr, gratis) -
 
 Begränsning -> film kan inte byta kategori under sin livstid.
 Kan illustreras genom att ta bort setPriceCategory.
-getPriceCategory kan returnera konstant; constructor parameter försvinner. 
+getPriceCategory kan returnera konstant; constructor parameter försvinner.
 
 ### Övning (60 min/2h 40 min)
 
 Gör själva parvis.
-
-### Alternativ till del 2
-
-(Istället - Movie har PriceCategory, strategy-pattern)
-(Övning - refactorera mot detta mål.)
-Movie: extract dependency -> ChargeForPriceCategory
-Flytta initiering till konstruktor; extrahera parameter; titta i testet!
-Dela upp i olika implementationer.
-Extract interface ChargeFor
 
 ## Sammanfattning (20 min/3h)
 

@@ -6,7 +6,7 @@ import org.junit.Test;
 public class CustomerTest {
 
     @Test
-    public void testStatement() {
+    public void statement_should_include_descriptions_and_points_and_total_amount() {
         Customer tolvan = new Customer("Tolvan");
         tolvan.addRental(new Rental(new Movie("Fast and Furious 4711", Movie.NEW_RELEASE),2));
         tolvan.addRental(new Rental(new Movie("Toy Story 17", Movie.CHILDRENS),5));
@@ -21,4 +21,19 @@ public class CustomerTest {
         Assert.assertEquals(expected, tolvan.statement());
     }
 
+    @Test
+    public void setPriceCode_should_change_statement() {
+        Customer tolvan = new Customer("Tolvan");
+        final Movie dieHard = new Movie("Die Hard", Movie.CHILDRENS);
+        tolvan.addRental(new Rental(dieHard,5));
+        Assert.assertEquals("Rental Record for Tolvan\n" +
+                "\tDie Hard\t4.5\n" +
+                "Amount owed is 4.5\n" +
+                "You earned 1 frequent renter points", tolvan.statement());
+        dieHard.setPriceCode(Movie.NEW_RELEASE);
+        Assert.assertEquals("Rental Record for Tolvan\n" +
+                "\tDie Hard\t15.0\n" +
+                "Amount owed is 15.0\n" +
+                "You earned 2 frequent renter points", tolvan.statement());
+    }
 }
