@@ -153,12 +153,11 @@ Kopiera PriceCategoryImpl till NewRelasePriceCategory.
 Byt namn på PriceCategoryImpl till RegularPriceCategory.
 Ändra i switch så att bara REGULAR.
 
-Movie: extract dependency -> ChargeForPriceCategory
+Ta bort kontrollen av pricecode i alla price category implementationer.
 
+Ta bort parametern pricecode.
 
-Flytta initiering till konstruktor; extrahera parameter; titta i testet!
-Dela upp i olika implementationer.
-Extract interface ChargeFor.
+Inför setPriceCategory i Movie?
 
 Med arv:
 

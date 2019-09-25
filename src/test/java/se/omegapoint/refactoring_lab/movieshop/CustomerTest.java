@@ -31,6 +31,7 @@ public class CustomerTest {
                 "Amount owed is 1.5\n" +
                 "You earned 1 frequent renter points", tolvan.statement());
         dieHard.setPriceCode(Movie.NEW_RELEASE);
+        dieHard.setPriceCategory(new NewReleasePriceCategory());
         Assert.assertEquals("Rental Record for Tolvan\n" +
                 "\tDie Hard\t6.0\n" +
                 "Amount owed is 6.0\n" +

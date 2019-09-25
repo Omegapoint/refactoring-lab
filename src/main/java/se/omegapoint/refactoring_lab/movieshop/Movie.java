@@ -4,9 +4,9 @@ public class Movie {
     public static final int CHILDRENS = 2;
     public static final int REGULAR = 0;
     public static final int NEW_RELEASE = 1;
-    private final PriceCategory priceCategory;
+    private PriceCategory priceCategory;
 
-    private String title;
+    private final String title;
     private int priceCode;
 
     public Movie(String title, int priceCode, PriceCategory priceCategory) {
@@ -21,6 +21,10 @@ public class Movie {
 
     public void setPriceCode(int priceCode) {
         this.priceCode = priceCode;
+    }
+
+    void setPriceCategory(PriceCategory priceCategory) {
+        this.priceCategory = priceCategory;
     }
 
     public String getTitle() {
