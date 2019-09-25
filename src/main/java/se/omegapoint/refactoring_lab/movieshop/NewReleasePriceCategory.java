@@ -5,7 +5,7 @@ public class NewReleasePriceCategory implements PriceCategory {
     }
 
     @Override
-    public double amount(int daysRented, int priceCode) {
+    public double amount(int daysRented) {
         return daysRented * 3;
     }
 }

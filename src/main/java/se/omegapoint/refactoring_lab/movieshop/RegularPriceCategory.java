@@ -5,7 +5,7 @@ public class RegularPriceCategory implements PriceCategory {
     }
 
     @Override
-    public double amount(int daysRented, int priceCode) {
+    public double amount(int daysRented) {
         if (daysRented > 2) {
             return 2 + (daysRented - 2) * 1.5;
         } else

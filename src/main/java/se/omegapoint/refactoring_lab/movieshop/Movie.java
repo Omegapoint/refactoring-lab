@@ -30,10 +30,10 @@ public class Movie {
     double amount(int daysRented) {
         // determine amount for each line
         final int priceCode = getPriceCode();
-        return priceCategory.amount(daysRented, priceCode);
+        return priceCategory.amount(daysRented);
     }
 
     private double amount(int daysRented, int priceCode) {
-        return priceCategory.amount(daysRented, priceCode);
+        return priceCategory.amount(daysRented);
     }
 }
