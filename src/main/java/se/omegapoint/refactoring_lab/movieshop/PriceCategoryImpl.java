@@ -1,10 +1,11 @@
 package se.omegapoint.refactoring_lab.movieshop;
 
-public class PriceCategoryImpl {
+public class PriceCategoryImpl implements PriceCategory {
     public PriceCategoryImpl() {
     }
 
-    double amount(int daysRented, int priceCode) {
+    @Override
+    public double amount(int daysRented, int priceCode) {
         switch (priceCode) {
             case Movie.REGULAR: {
                 if (daysRented > 2)
