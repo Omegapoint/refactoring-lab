@@ -4,6 +4,7 @@ public class Movie {
     public static final int CHILDRENS = 2;
     public static final int REGULAR = 0;
     public static final int NEW_RELEASE = 1;
+    private final PriceCategoryImpl priceCategoryImpl = new PriceCategoryImpl();
 
     private String title;
     private int priceCode;
@@ -27,24 +28,11 @@ public class Movie {
 
     double amount(int daysRented) {
         // determine amount for each line
-        switch (getPriceCode()) {
-            case REGULAR: {
-                if (daysRented > 2)
-                    return 2 + (daysRented - 2) * 1.5;
-                else
-                    return 2;
-            }
-            case NEW_RELEASE: {
-                return daysRented * 3;
-            }
-            case CHILDRENS: {
-                if (daysRented > 3)
-                    return 1.5 + (daysRented - 3) * 1.5;
-                else
-                    return 1.5;
-            }
-            default:
-                throw new IllegalArgumentException();
-        }
+        final int priceCode = getPriceCode();
+        return priceCategoryImpl.amount(daysRented, priceCode);
+    }
+
+    private double amount(int daysRented, int priceCode) {
+        return priceCategoryImpl.amount(daysRented, priceCode);
     }
 }
