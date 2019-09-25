@@ -6,12 +6,6 @@ public class NewReleasePriceCategory implements PriceCategory {
 
     @Override
     public double amount(int daysRented, int priceCode) {
-        switch (priceCode) {
-            case Movie.NEW_RELEASE: {
-                return daysRented * 3;
-            }
-            default:
-                throw new IllegalArgumentException();
-        }
+        return daysRented * 3;
     }
 }
