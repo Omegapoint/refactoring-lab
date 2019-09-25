@@ -20,40 +20,37 @@ public class Customer {
     }
 
     public String statement() {
-        double totalAmount = 0;
-        int frequentRenterPoints = 0;
         String result = "Rental Record for " + getName() + "\n";
-        for(Rental each : rentals) {
-            double thisAmount = 0;
-            // determine amount for each line
-            switch (each.getMovie().getPriceCode()) {
-                case Movie.REGULAR:
-                    thisAmount += 2;
-                    if (each.getDaysRented() > 2)
-                        thisAmount += (each.getDaysRented() - 2) * 1.5;
-                    break;
-                case Movie.NEW_RELEASE:
-                    thisAmount += each.getDaysRented() * 3;
-                    break;
-                case Movie.CHILDRENS:
-                    thisAmount += 1.5;
-                    if(each.getDaysRented() > 3)
-                        thisAmount += (each.getDaysRented() - 3) * 1.5;
-                    break;
-            }
-            // add frequent renter points
-            frequentRenterPoints++;
-            // add bonus for two days new release rental
-            if((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDaysRented() > 1)
-                frequentRenterPoints++;
-
-            // show figures for this rental
-            result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(thisAmount) + "\n";
-            totalAmount += thisAmount;
-        }
+        result += rentalDescription();
         // add footer line
-        result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
-        result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
+        result += "Amount owed is " + String.valueOf(totalAmount()) + "\n";
+        result += "You earned " + String.valueOf(totalFrequentRenterPoints()) + " frequent renter points";
         return result;
     }
+
+    private String rentalDescription() {
+        String records = "";
+        for (Rental each : rentals) {
+            // show figures for this rental
+            records += each.record();
+        }
+        return records;
+    }
+
+    private double totalAmount() {
+        double totalAmount = 0;
+        for (Rental rental : rentals) {
+            totalAmount += rental.amount();
+        }
+        return totalAmount;
+    }
+
+    private int totalFrequentRenterPoints() {
+        int totalFrequentRenterPoints = 0;
+        for (Rental rental : rentals) {
+            totalFrequentRenterPoints += rental.frequentRenterPoints();
+        }
+        return totalFrequentRenterPoints;
+    }
+
 }
