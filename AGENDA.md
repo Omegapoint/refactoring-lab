@@ -137,6 +137,21 @@ Med strategi:
 Extrahera anropet av getPriceCode i amount till en lokal variabel.
 Extrahera en tillfällig metod: amountForCategory
 Extrahera amountForCateory till delegat; PriceCategoryImpl.
+Gör amountForCategory publik annars går den inte att flytta till interfacet!
+Extrahera interface för PriceCatregoyImpl; PriceCategory.
+Glöm inte att ersätta med interface på alla ställen där det går.
+Flytta initieringen till constructor.
+
+Kopiera PriceCategoryImpl till ChildrensPriceCategory.
+Ändra i switch så att bara CHILDRENS price category accepteras.
+Ändra i parametern i konstruktorn i testet.
+
+Kopiera PriceCategoryImpl till NewRelasePriceCategory.
+Ändra i switch så att bara NEW_RELEASE price category accepteras.
+Ändra i parametern i konstruktorn i testet.
+
+Byt namn på PriceCategoryImpl till RegularPriceCategory.
+Ändra i switch så att bara REGULAR.
 
 Movie: extract dependency -> ChargeForPriceCategory
 
