@@ -40,7 +40,7 @@ public class Customer {
     private double totalAmount() {
         double totalAmount = 0;
         for (Rental rental : rentals) {
-            totalAmount += rental.amount();
+            totalAmount += rental.movie.amount(rental.getDaysRented());
         }
         return totalAmount;
     }
