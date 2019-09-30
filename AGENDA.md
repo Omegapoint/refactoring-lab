@@ -118,6 +118,9 @@ Skriv ner tre saker du skulle vilja komma ihåg
 
 ### Repetition: en sak du ville komma ihåg
 
+Kodlukter: Långa metoder, dataavundsjuka.
+Refaktoriseringar: ??
+
 ### Genomgång (30 min/1h 40 min)
 
 Mål: Isolera prisberäkningen.
@@ -126,19 +129,18 @@ Inuti varje switch-sats finns några små klasser som vill komma ut.
 
 Skjut price/amount vidare från Rental till Movie.
 * Inline av getMovie i Rental.
+* Extrahera tillfällig amount-metod i rental.
 * Flytta metoden trots att den vill ha "tillbaka" Rental-referens.
 * I Movie.price(Rental) gör "introduce paramater" på "rental.getDaysRented()"
 
 Med strategi:
 
-(Istället - Movie har PriceCategory, strategy-pattern)
-(Övning - refactorera mot detta mål.)
-
-Extrahera anropet av getPriceCode i amount till en lokal variabel.
+Extrahera anropet av getPriceCode i amount till en lokal variabel
+för att slippa parameter.
 Extrahera en tillfällig metod: amountForCategory
-Extrahera amountForCateory till delegat; PriceCategoryImpl.
+Extrahera amountForCategory till delegat; PriceCategoryImpl.
 Gör amountForCategory publik annars går den inte att flytta till interfacet!
-Extrahera interface för PriceCatregoyImpl; PriceCategory.
+Extrahera interface för PriceCategoryImpl; PriceCategory.
 Glöm inte att ersätta med interface på alla ställen där det går.
 Flytta initieringen till constructor.
 
@@ -151,7 +153,9 @@ Kopiera PriceCategoryImpl till NewRelasePriceCategory.
 Ändra i parametern i konstruktorn i testet.
 
 Byt namn på PriceCategoryImpl till RegularPriceCategory.
-Ändra i switch så att bara REGULAR.
+Ändra i switch så att bara hanterar REGULAR.
+
+Testfel! Diskussion.
 
 Ta bort kontrollen av pricecode i alla price category implementationer.
 
@@ -185,7 +189,11 @@ Gör själva parvis.
 
 ## Sammanfattning (20 min/3h)
 
-En punkt från varje deltagare
+Kodlukter: Switch-sats. Överkomplicerade beräkningar med mutationer.
+Refaktoriseringar: ??
+
+En punkt från varje deltagare.
+
 
 ### Extra material
 
