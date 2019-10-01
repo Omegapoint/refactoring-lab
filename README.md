@@ -31,18 +31,18 @@ Kodlukter:
 
 ## Del 2: Isolera prisberäkningen.
 
-- Flytta metoden price/amount från Rental till Movie.
-- ...
+- Flytta metoden price/amount vidare från Rental till Movie.
+- Dela upp switch-satsen i tre klasser och ett interface (strategy pattern).
 
 Kodlukter:
 
 - Switch-sats (https://refactoring.guru/smells/switch-statements)
 - Onödig intimitet
+- Tillfälliga variabler
 
 ## Referenser
 
-- Martin Fowler: Refactoring: Improving the Design of Existing Code 1st Edition
-- Martin Fowler: Refactoring: Improving the Design of Existing Code (2nd Edition) (Släpps i december 2018)
+- Martin Fowler: Refactoring: Improving the Design of Existing Code (2nd Edition)
 - https://refactoring.com/catalog
 - Joshua Kerievsky: Refactoring to Patterns 1st Edition
 - https://refactoring.guru
