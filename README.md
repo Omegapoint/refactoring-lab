@@ -19,6 +19,9 @@ Kör enhetstestet i CustomerTest.
 
 ## Del 1: Dela upp och och organisera om koden i statement-metoden
 
+Vi ärver en halvrörig kod. Vad kan vi göra för att göra koden enklare och lättare att
+förstå?
+
 - Extrahera metod för prisberäkning; amountFor
 - ...
 
@@ -30,6 +33,10 @@ Kodlukter:
 - Tillfälliga variabler
 
 ## Del 2: Isolera prisberäkningen.
+
+Vi får reda på att butiken kommer att vilja ha fler typer av priser
+och kunna byta prissättning på filmerna efterhand. Kan vi förändra
+koden så att det blir lättare att stödja en sådan funktion?
 
 - Flytta metoden price/amount vidare från Rental till Movie.
 - Dela upp switch-satsen i tre klasser och ett interface (strategy pattern).

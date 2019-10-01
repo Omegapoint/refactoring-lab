@@ -108,6 +108,8 @@ Extrahera beskrivningsraderna och konvertera till stream.
 
 ### Övning (1h)
 
+Kolla att alla hittat koden: https://github.com/omegapoint/refactor-lab
+
 Börja från början, kör på egen hand parvis.
 
 ### Sammanfattning
@@ -125,7 +127,13 @@ Refaktoriseringar: ??
 
 Mål: Isolera prisberäkningen.
 
+Vi får reda på att butiken kommer att vilja ha fler typer av priser
+och kunna byta prissättning på filmerna efterhand. Kan vi förändra
+koden så att det blir lättare att stödja en sådan funktion?
+
 Inuti varje switch-sats finns några små klasser som vill komma ut.
+Open-Closed principle. Enklare att lägga till en ny priskategori utan att
+modifiera i Rental eller Customer.
 
 Skjut price/amount vidare från Rental till Movie.
 * Inline av getMovie i Rental.
