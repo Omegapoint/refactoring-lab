@@ -25,12 +25,24 @@ Det är också ett släkte plattmaskar. Och ett vattendrag i Centralafrikanska r
 
 ### Genomgång (30 min/55 min)
 
+Denna kata består av 4 olika små delar och upplägget är sådant att:
+ * Läraren gör uppgiften 
+* Studenterna härmar
+* Diskutera varför. Till varje del så finns en diskussionsfråga.
+
+Se till att alla har hittat repot: https://github.com/omegapoint/refactor-lab
+#### Del 1
 (dema 10 min, disussion, dema 10 min, diskussion, dema 10 min, diskussion)
 
 switch priceCode => extract method "int amountFor(Rental)", för hand.
 "Råka" göra fel och orsaka ett avrundningsfel => Rätta genom att göra om variabeln till en double.
 Gör om refaktorisering men från menyn.
 Snygga upp parameter (namnet) och "result"-variabel.
+
+**Disskusion:** Vad är skillnaden att använda sig av använda sig av inbyggda verktyg? Lättheten att göra fel även vid 
+små refaktoriseringar.
+
+#### Del 2
 
 data envy i amountFor.
 Flytta den nya metoden till Rental - manuell, klipp ur method-body.
@@ -60,6 +72,10 @@ double charge() {
 ```
 (10 min)
 
+**Diskussion:** varför gjorde vi denna rekatorinseringen? 
+
+#### Del 3
+
 I statement - "replace temp with query", dvs inline på "thisAmount"
   (behövs egentligen inte göras än)
   kan motiveras av att man vill bryta ut metod "statementDetailsForRental"
@@ -68,6 +84,11 @@ I statement - "replace temp with query", dvs inline på "thisAmount"
         result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getThisAmount()) + "\n";
         totalAmount += each.getThisAmount();
 ```
+
+Argument för:
+
+* Minskar beroendet. Behöver inte vara beroende av this amount
+* ska man spendera tid på mikroptimeringar?
 
 Byt ut ++ mot += för att göra algoritmen tydligare.
 i Customer.statement - frequentRenterPoint
@@ -86,35 +107,44 @@ frequentRenterPoint += thisFrequentRenterPoint
 
 ```
 
+returnera olika beroende på villkor istället för att summera ihop och returnera resultatet. Börja
+med att bryta det till en if-else istället för ternary. Låt dem se om de kan förända det till ternary.
+
  extract method på fyra rader om thisFrequentRenterPoint
 move method till Rental
-returnera olika beroende på villkor istället för att summera ihop och returnera resultatet
+
 ```java
     int getFrequentRentalPoints() {
         return getMovie().getPriceCode() == Movie.NEW_RELEASE && getDaysRented() > 1 ? 2 : 1;
     }
 ```
 
+**Diskussion:** Vad är skillnaden mellan enkelt/lätt gentemot att vara van vid. 
+
+#### Del 4
+
 (10 min)
 
 Pilla isär loopen och pilla ut totalAmount-beräkningen till egen loop.
-Bryt ut metoden som "totalCharge"
 
-Pilla ut "totalFrequentRenterPoints" på samma sätt.
+När man får en metod som tar in en totalAmount och skickar tillbaka en totalamount. för att undvika skapa en tmpvariabel 
+tmpAmount för totalamount och sedan tilldela den efter loopen från värdet av tmpAmount. Då när du tar extract method så 
+kommer du inte få att den tar in samma sak som den returnerar. 
+
+Ska denna då flyttas till Rentals? Nej för den handhar flera olika rentals. 
+
+Pilla ut "totalFrequentRenterPoints" på samma sätt som ovanstånde.
 
 Överkurs: Bygg om looparna till stream().mapToInt().sum(). (Inbyggd refaktorisering).
 
-Extrahera beskrivningsraderna och konvertera till stream.
+Extrahera beskrivningsraderna och konvertera till stream. Det får de göra själva. Så elaka är vi. 
 
-### Övning (1h)
-
-Kolla att alla hittat koden: https://github.com/omegapoint/refactor-lab
-
-Börja från början, kör på egen hand parvis.
+Nu kan man även göra replace tmpvariable with query instead. med andra ord kan vi ersätta totalAmount och Frequentpoints
+med ett metodanrop. 
 
 ### Sammanfattning
 
-Skriv ner tre saker du skulle vilja komma ihåg
+Skriv ner tre saker du skulle vilja komma ihåg.
 
 ### Paus (15 min/1h 10 min)
 
