@@ -161,47 +161,53 @@ Vi får reda på att butiken kommer att vilja ha fler typer av priser
 och kunna byta prissättning på filmerna efterhand. Kan vi förändra
 koden så att det blir lättare att stödja en sådan funktion?
 
-Inuti varje switch-sats finns några små klasser som vill komma ut.
-Open-Closed principle. Enklare att lägga till en ny priskategori utan att
+Inuti varje switch-sats finns några små klasser som vill komma ut. Open-Closed principle. Enklare att lägga till en ny priskategori utan att
 modifiera i Rental eller Customer.
 
-Skjut price/amount vidare från Rental till Movie.
-* Inline av getMovie i Rental.
-* Extrahera tillfällig amount-metod i rental.
-* Flytta metoden trots att den vill ha "tillbaka" Rental-referens.
-* I Movie.price(Rental) gör "introduce paramater" på "rental.getDaysRented()"
 
-Med strategi:
+*. Inline av getMovie i Rental med andra ord använd instansvariabeln movie istället för getMovie().
+*. Extrahera tillfällig amount-metod i rental.
+    (a) skapa en variabel som håller tmpamount = 0
+    (b) lägg thisAmount += tmpamount
+    (c) byt ut så att det är tmpamount som används istället
+    (d) nu kan du använda extraxt method
+    
+    Gör så med resterande amountuträkningar
+```java
+double tmpAmount = 0;
+tmpAmount += 2;
+if (getDaysRented() > 2)
+tmpAmount += (getDaysRented() - 2) * 1.5;
+thisAmount += tmpAmount;
+``` 
+*. Nu gäller det att vi får in detta till Movie igen eftersom den inte tillhör Rental. Använd Move method och flytta 
+till Movie. Tyvärr får vi än så länge med rental men det är ok.
 
-Extrahera anropet av getPriceCode i amount till en lokal variabel
-för att slippa parameter.
-Extrahera en tillfällig metod: amountForCategory
-Extrahera amountForCategory till delegat; PriceCategoryImpl.
-Gör amountForCategory publik annars går den inte att flytta till interfacet!
-Extrahera interface för PriceCategoryImpl; PriceCategory.
-Glöm inte att ersätta med interface på alla ställen där det går.
-Flytta initieringen till constructor.
+**Strategipattern:** 
 
-Kopiera PriceCategoryImpl till ChildrensPriceCategory.
-Ändra i switch så att bara CHILDRENS price category accepteras.
-Ändra i parametern i konstruktorn i testet.
+* Eftersom vi ändå bara hämtar rentaldays från rental så behöver vi inte skicka med hela Rental-referensen utan
+bara int daysrented. Markera rental.getDaysRented och använd introduce variable och även introduce parameter. 
 
-Kopiera PriceCategoryImpl till NewRelasePriceCategory.
-Ändra i switch så att bara NEW_RELEASE price category accepteras.
-Ändra i parametern i konstruktorn i testet.
+* Gör att movie.getPriceCode() läggs i en lokal variabel så denna används i switchen istället. 
 
-Byt namn på PriceCategoryImpl till RegularPriceCategory.
-Ändra i switch så att bara hanterar REGULAR.
+* Nu skulle vi vilja få bort switchsatsen som vi kan lösa med hjälp av polymorfi. Detta kan upnås med hjälp av 
+arv eller interface. Vi kommer att välja att göra med strategi. Alltså en egenskap istället för något man är. 
+    (a) Med arv så har vi ett är beroende. 
+    (b) Med interface blir det ett har eller kan beroende.
+    
+* Visa ett kort exempel på tavlan om composition over inheritance. 
 
-Testfel! Diskussion.
+* Skapa ett interface som heter förslagsvis priceCategory. Skapa en methodsignatur i interfacet som returnerar en
+double och tar in en int. Skapa en konkret implementation för varje strategi som implementerar interfacet. 
+   
+   
+* I konstruktorn låt den ta in strategi interfacet också! Skapa en till metod som bara skickar tillbaka amount med 
+hjälp av interfacet istället. 
 
-Ta bort kontrollen av pricecode i alla price category implementationer.
+* Testfel! Diskussion: Ett test failar och det är för att vi nu inte använder pricecode längre. Skapa en metod som sätter Pricestrategy istället
 
-Ta bort parametern pricecode.
 
-Inför setPriceCategory i Movie?
-
-Med arv:
+**Med arv:**
 
 Skapa subklass ChildrenMovie.
 Kopiera hela price-metoden från Movie till ChildrenMovie.
