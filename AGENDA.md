@@ -26,11 +26,16 @@ Det är också ett släkte plattmaskar. Och ett vattendrag i Centralafrikanska r
 ### Genomgång (30 min/55 min)
 
 Denna kata består av 4 olika små delar och upplägget är sådant att:
- * Läraren gör uppgiften 
+* Läraren gör uppgiften 
 * Studenterna härmar
 * Diskutera varför. Till varje del så finns en diskussionsfråga.
 
 Se till att alla har hittat repot: https://github.com/omegapoint/refactor-lab
+
+* Kort intro till code smells 
+    * Vad en code smell är (Vagheten)
+    * I kursen kommer vi använda oss av: Långa metoder (long methods), funktions-avundsjuka (feature envy),
+     switch statements.
 #### Del 1
 (dema 10 min, disussion, dema 10 min, diskussion, dema 10 min, diskussion)
 
@@ -88,7 +93,9 @@ I statement - "replace temp with query", dvs inline på "thisAmount"
 Argument för:
 
 * Minskar beroendet. Behöver inte vara beroende av this amount
-* ska man spendera tid på mikroptimeringar?
+* ska man spendera tid på mikroptimeringar? Ibland under en refaktorisering eller under en fas kan det vara bra att 
+faktiskt inte bry sig om performance ut att det gör man sedan när man anser att man är någorlunda klar med programmet. 
+Då mäter man vart ens största minnes och tidskrävande operationer är någonstans och optimerar på plats.
 
 Byt ut ++ mot += för att göra algoritmen tydligare.
 i Customer.statement - frequentRenterPoint
