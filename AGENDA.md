@@ -1,17 +1,20 @@
 # Agenda (avsett för läraren)
+(Stegtid / Total tid)
 
-## Presentera er! (5 min)
+## Presentera er! (5 min/5 min)
 
 ## Förväntningar (10 min/15 min)
 
 Vad har du för förväntningar?
 Vad betyder det för dig?
 
-## Vad betyder refaktorisering? (5 min/20 min)
+## Vad betyder refaktorisering? (5 min/25 min)
 
 * Funktionellt säkra förändringar av kod.
+* Vad en code smell är (Vagheten)
+* I kursen kommer vi använda oss av: Långa metoder (long methods), funktions-avundsjuka (feature envy), switch statements.
 
-## Fowler-katan (5 min/25 min)
+## Fowler-katan (5 min/30 min)
 
 En lätt moderniserad version av av övningen från Fowlers bok.
 Vad är en kata?
@@ -22,11 +25,6 @@ Poängen med kata är att så grundligt lära in de tekniker som finns i katan,
 att de sedan snabbt och korrekt kan användas i en uppkommen nödvärns-situation eller tävling."
 
 Det är också ett släkte plattmaskar. Och ett vattendrag i Centralafrikanska republiken.
-
-### Code Smells
-    * Vad en code smell är (Vagheten)
-    * I kursen kommer vi använda oss av: Långa metoder (long methods), funktions-avundsjuka (feature envy),
-     switch statements.
 
 ### Genomgång (30 min/55 min)
 
