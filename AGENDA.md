@@ -8,7 +8,7 @@
 Vad har du för förväntningar?
 Vad betyder det för dig?
 
-## Vad betyder refaktorisering? (5 min/25 min)
+## Vad betyder refaktorisering? (10 min/25 min)
 
 * Funktionellt säkra förändringar av kod.
 * Vad en code smell är (Vagheten)
