@@ -35,7 +35,7 @@ Denna kata består av 4 olika små delar och upplägget är sådant att:
 
 Se till att alla har hittat repot: https://github.com/omegapoint/refactor-lab
     * 
-#### Del 1
+#### Del A
 (dema 10 min, disussion, dema 10 min, diskussion, dema 10 min, diskussion)
 
 switch priceCode => extract method "int amountFor(Rental)", för hand.
@@ -46,7 +46,7 @@ Snygga upp parameter (namnet) och "result"-variabel.
 **Disskusion:** Vad är skillnaden att använda sig av använda sig av inbyggda verktyg? Lättheten att göra fel även vid 
 små refaktoriseringar.
 
-#### Del 2
+#### Del B
 
 data envy i amountFor.
 Flytta den nya metoden till Rental - manuell, klipp ur method-body.
@@ -78,7 +78,7 @@ double charge() {
 
 **Diskussion:** varför gjorde vi denna rekatorinseringen? 
 
-#### Del 3
+#### Del C
 
 I statement - "replace temp with query", dvs inline på "thisAmount"
   (behövs egentligen inte göras än)
@@ -127,7 +127,7 @@ move method till Rental
 
 **Diskussion:** Vad är skillnaden mellan enkelt/lätt gentemot att vara van vid. 
 
-#### Del 4
+#### Del D
 
 (10 min)
 
