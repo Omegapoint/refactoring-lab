@@ -23,6 +23,11 @@ att de sedan snabbt och korrekt kan användas i en uppkommen nödvärns-situatio
 
 Det är också ett släkte plattmaskar. Och ett vattendrag i Centralafrikanska republiken.
 
+### Code Smells
+    * Vad en code smell är (Vagheten)
+    * I kursen kommer vi använda oss av: Långa metoder (long methods), funktions-avundsjuka (feature envy),
+     switch statements.
+
 ### Genomgång (30 min/55 min)
 
 Denna kata består av 4 olika små delar och upplägget är sådant att:
@@ -31,11 +36,7 @@ Denna kata består av 4 olika små delar och upplägget är sådant att:
 * Diskutera varför. Till varje del så finns en diskussionsfråga.
 
 Se till att alla har hittat repot: https://github.com/omegapoint/refactor-lab
-
-* Kort intro till code smells 
-    * Vad en code smell är (Vagheten)
-    * I kursen kommer vi använda oss av: Långa metoder (long methods), funktions-avundsjuka (feature envy),
-     switch statements.
+    * 
 #### Del 1
 (dema 10 min, disussion, dema 10 min, diskussion, dema 10 min, diskussion)
 
