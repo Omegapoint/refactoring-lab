@@ -170,15 +170,14 @@ koden så att det blir lättare att stödja en sådan funktion?
 Inuti varje switch-sats finns några små klasser som vill komma ut. Open-Closed principle. Enklare att lägga till en ny priskategori utan att
 modifiera i Rental eller Customer.
 
+#### Del A
 
-*. Inline av getMovie i Rental med andra ord använd instansvariabeln movie istället för getMovie().
-*. Extrahera tillfällig amount-metod i rental.
+* Extrahera tillfällig amount-metod i rental.
     (a) skapa en variabel som håller tmpamount = 0
     (b) lägg thisAmount += tmpamount
     (c) byt ut så att det är tmpamount som används istället
     (d) nu kan du använda extraxt method
-    
-Gör så med resterande amountuträkningar
+
 ```java
 double tmpAmount = 0;
 tmpAmount += 2;
@@ -186,26 +185,28 @@ if (getDaysRented() > 2)
 tmpAmount += (getDaysRented() - 2) * 1.5;
 thisAmount += tmpAmount;
 ``` 
-*. Nu gäller det att vi får in detta till Movie igen eftersom den inte tillhör Rental. Använd Move method och flytta 
+    
+Gör så med resterande amountuträkningar
+* Nu gäller det att vi får in detta till Movie igen eftersom den inte tillhör Rental. Använd Move method och flytta 
 till Movie. Tyvärr får vi än så länge med rental men det är ok.
 
+**Diskussion:** Blev det egentligen bättre nu? Nu skickar vi med ett rental-objekt in i Movie?
+
+#### Del B
 **Strategipattern:** 
 
 * Eftersom vi ändå bara hämtar rentaldays från rental så behöver vi inte skicka med hela Rental-referensen utan
 bara int daysrented. Markera rental.getDaysRented och använd introduce variable och även introduce parameter. 
 
-* Gör att movie.getPriceCode() läggs i en lokal variabel så denna används i switchen istället. 
-
-* Nu skulle vi vilja få bort switchsatsen som vi kan lösa med hjälp av polymorfi. Detta kan upnås med hjälp av 
+Nu skulle vi vilja få bort switchsatsen som vi kan lösa med hjälp av polymorfi. Detta kan upnås med hjälp av 
 arv eller interface. Vi kommer att välja att göra med strategi. Alltså en egenskap istället för något man är. 
     (a) Med arv så har vi ett är beroende. 
     (b) Med interface blir det ett har eller kan beroende.
-    
-* Visa ett kort exempel på tavlan om composition over inheritance. 
+
+**(Visa ett kort exempel på tavlan om composition over inheritance)** 
 
 * Skapa ett interface som heter förslagsvis priceCategory. Skapa en methodsignatur i interfacet som returnerar en
-double och tar in en int. Skapa en konkret implementation för varje strategi som implementerar interfacet. 
-   
+double och tar in en int. Skapa en konkret implementation för varje strategi som implementerar interfacet.
    
 * I konstruktorn låt den ta in strategi interfacet också! Skapa en till metod som bara skickar tillbaka amount med 
 hjälp av interfacet istället. 
