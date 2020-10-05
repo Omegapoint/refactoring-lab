@@ -26,7 +26,7 @@ att de sedan snabbt och korrekt kan användas i en uppkommen nödvärns-situatio
 
 Det är också ett släkte plattmaskar. Och ett vattendrag i Centralafrikanska republiken.
 
-### Genomgång (30 min/55 min)
+### Genomgång (55 min/1h 25 min)
 
 Denna kata består av 4 olika små delar och upplägget är sådant att:
 * Läraren gör uppgiften 
