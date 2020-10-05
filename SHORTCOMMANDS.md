@@ -10,6 +10,6 @@
 | Move                  | F6                    | F6
 | Extract Variable      | ctrl + alt + V        | command + option + V
 | Extract Parameter     | ctrl + alt + P        | command + option + P 
-| Move line             | alt + shift + up/down | ?
+| Move line             | alt + shift + up/down | command + shift + up/down
 
 Mer kommandon finns exempelvis här: https://resources.jetbrains.com/storage/products/intellij-idea/docs/IntelliJIDEA_ReferenceCard.pdf
