@@ -1,17 +1,20 @@
 # Agenda (avsett för läraren)
+(Stegtid / Total tid)
 
-## Presentera er! (5 min)
+## Presentera er! (5 min/5 min)
 
 ## Förväntningar (10 min/15 min)
 
 Vad har du för förväntningar?
 Vad betyder det för dig?
 
-## Vad betyder refaktorisering? (5 min/20 min)
+## Vad betyder refaktorisering? (10 min/25 min)
 
 * Funktionellt säkra förändringar av kod.
+* Vad en code smell är (Vagheten)
+* I kursen kommer vi använda oss av: Långa metoder (long methods), funktions-avundsjuka (feature envy), switch statements.
 
-## Fowler-katan (5 min/25 min)
+## Fowler-katan (5 min/30 min)
 
 En lätt moderniserad version av av övningen från Fowlers bok.
 Vad är en kata?
@@ -23,14 +26,27 @@ att de sedan snabbt och korrekt kan användas i en uppkommen nödvärns-situatio
 
 Det är också ett släkte plattmaskar. Och ett vattendrag i Centralafrikanska republiken.
 
-### Genomgång (30 min/55 min)
+### Genomgång (55 min/1h 25 min)
 
+Denna kata består av 4 olika små delar och upplägget är sådant att:
+* Läraren gör uppgiften 
+* Studenterna härmar
+* Diskutera varför. Till varje del så finns en diskussionsfråga.
+
+Se till att alla har hittat repot: https://github.com/omegapoint/refactor-lab
+    * 
+#### Del A
 (dema 10 min, disussion, dema 10 min, diskussion, dema 10 min, diskussion)
 
 switch priceCode => extract method "int amountFor(Rental)", för hand.
 "Råka" göra fel och orsaka ett avrundningsfel => Rätta genom att göra om variabeln till en double.
 Gör om refaktorisering men från menyn.
 Snygga upp parameter (namnet) och "result"-variabel.
+
+**Disskusion:** Vad är skillnaden att använda sig av använda sig av inbyggda verktyg? Lättheten att göra fel även vid 
+små refaktoriseringar.
+
+#### Del B
 
 data envy i amountFor.
 Flytta den nya metoden till Rental - manuell, klipp ur method-body.
@@ -60,6 +76,10 @@ double charge() {
 ```
 (10 min)
 
+**Diskussion:** varför gjorde vi denna rekatorinseringen? 
+
+#### Del C
+
 I statement - "replace temp with query", dvs inline på "thisAmount"
   (behövs egentligen inte göras än)
   kan motiveras av att man vill bryta ut metod "statementDetailsForRental"
@@ -68,6 +88,13 @@ I statement - "replace temp with query", dvs inline på "thisAmount"
         result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getThisAmount()) + "\n";
         totalAmount += each.getThisAmount();
 ```
+
+Argument för:
+
+* Minskar beroendet. Behöver inte vara beroende av this amount
+* ska man spendera tid på mikroptimeringar? Ibland under en refaktorisering eller under en fas kan det vara bra att 
+faktiskt inte bry sig om performance ut att det gör man sedan när man anser att man är någorlunda klar med programmet. 
+Då mäter man vart ens största minnes och tidskrävande operationer är någonstans och optimerar på plats.
 
 Byt ut ++ mot += för att göra algoritmen tydligare.
 i Customer.statement - frequentRenterPoint
@@ -86,35 +113,44 @@ frequentRenterPoint += thisFrequentRenterPoint
 
 ```
 
+returnera olika beroende på villkor istället för att summera ihop och returnera resultatet. Börja
+med att bryta det till en if-else istället för ternary. Låt dem se om de kan förända det till ternary.
+
  extract method på fyra rader om thisFrequentRenterPoint
 move method till Rental
-returnera olika beroende på villkor istället för att summera ihop och returnera resultatet
+
 ```java
     int getFrequentRentalPoints() {
         return getMovie().getPriceCode() == Movie.NEW_RELEASE && getDaysRented() > 1 ? 2 : 1;
     }
 ```
 
+**Diskussion:** Vad är skillnaden mellan enkelt/lätt gentemot att vara van vid. 
+
+#### Del D
+
 (10 min)
 
 Pilla isär loopen och pilla ut totalAmount-beräkningen till egen loop.
-Bryt ut metoden som "totalCharge"
 
-Pilla ut "totalFrequentRenterPoints" på samma sätt.
+När man får en metod som tar in en totalAmount och skickar tillbaka en totalamount. för att undvika skapa en tmpvariabel 
+tmpAmount för totalamount och sedan tilldela den efter loopen från värdet av tmpAmount. Då när du tar extract method så 
+kommer du inte få att den tar in samma sak som den returnerar. 
+
+Ska denna då flyttas till Rentals? Nej för den handhar flera olika rentals. 
+
+Pilla ut "totalFrequentRenterPoints" på samma sätt som ovanstånde.
 
 Överkurs: Bygg om looparna till stream().mapToInt().sum(). (Inbyggd refaktorisering).
 
-Extrahera beskrivningsraderna och konvertera till stream.
+Extrahera beskrivningsraderna och konvertera till stream. Det får de göra själva. Så elaka är vi. 
 
-### Övning (1h)
-
-Kolla att alla hittat koden: https://github.com/omegapoint/refactor-lab
-
-Börja från början, kör på egen hand parvis.
+Nu kan man även göra replace tmpvariable with query instead. med andra ord kan vi ersätta totalAmount och Frequentpoints
+med ett metodanrop. 
 
 ### Sammanfattning
 
-Skriv ner tre saker du skulle vilja komma ihåg
+Skriv ner tre saker du skulle vilja komma ihåg.
 
 ### Paus (15 min/1h 10 min)
 
@@ -131,47 +167,54 @@ Vi får reda på att butiken kommer att vilja ha fler typer av priser
 och kunna byta prissättning på filmerna efterhand. Kan vi förändra
 koden så att det blir lättare att stödja en sådan funktion?
 
-Inuti varje switch-sats finns några små klasser som vill komma ut.
-Open-Closed principle. Enklare att lägga till en ny priskategori utan att
+Inuti varje switch-sats finns några små klasser som vill komma ut. Open-Closed principle. Enklare att lägga till en ny priskategori utan att
 modifiera i Rental eller Customer.
 
-Skjut price/amount vidare från Rental till Movie.
-* Inline av getMovie i Rental.
+#### Del A
+
 * Extrahera tillfällig amount-metod i rental.
-* Flytta metoden trots att den vill ha "tillbaka" Rental-referens.
-* I Movie.price(Rental) gör "introduce paramater" på "rental.getDaysRented()"
+    (a) skapa en variabel som håller tmpamount = 0
+    (b) lägg thisAmount += tmpamount
+    (c) byt ut så att det är tmpamount som används istället
+    (d) nu kan du använda extraxt method
 
-Med strategi:
+```java
+double tmpAmount = 0;
+tmpAmount += 2;
+if (getDaysRented() > 2)
+tmpAmount += (getDaysRented() - 2) * 1.5;
+thisAmount += tmpAmount;
+``` 
+    
+Gör så med resterande amountuträkningar
+* Nu gäller det att vi får in detta till Movie igen eftersom den inte tillhör Rental. Använd Move method och flytta 
+till Movie. Tyvärr får vi än så länge med rental men det är ok.
 
-Extrahera anropet av getPriceCode i amount till en lokal variabel
-för att slippa parameter.
-Extrahera en tillfällig metod: amountForCategory
-Extrahera amountForCategory till delegat; PriceCategoryImpl.
-Gör amountForCategory publik annars går den inte att flytta till interfacet!
-Extrahera interface för PriceCategoryImpl; PriceCategory.
-Glöm inte att ersätta med interface på alla ställen där det går.
-Flytta initieringen till constructor.
+**Diskussion:** Blev det egentligen bättre nu? Nu skickar vi med ett rental-objekt in i Movie?
 
-Kopiera PriceCategoryImpl till ChildrensPriceCategory.
-Ändra i switch så att bara CHILDRENS price category accepteras.
-Ändra i parametern i konstruktorn i testet.
+#### Del B
+**Strategipattern:** 
 
-Kopiera PriceCategoryImpl till NewRelasePriceCategory.
-Ändra i switch så att bara NEW_RELEASE price category accepteras.
-Ändra i parametern i konstruktorn i testet.
+* Eftersom vi ändå bara hämtar rentaldays från rental så behöver vi inte skicka med hela Rental-referensen utan
+bara int daysrented. Markera rental.getDaysRented och använd introduce variable och även introduce parameter. 
 
-Byt namn på PriceCategoryImpl till RegularPriceCategory.
-Ändra i switch så att bara hanterar REGULAR.
+Nu skulle vi vilja få bort switchsatsen som vi kan lösa med hjälp av polymorfi. Detta kan upnås med hjälp av 
+arv eller interface. Vi kommer att välja att göra med strategi. Alltså en egenskap istället för något man är. 
+    (a) Med arv så har vi ett är beroende. 
+    (b) Med interface blir det ett har eller kan beroende.
 
-Testfel! Diskussion.
+**(Visa ett kort exempel på tavlan om composition over inheritance)** 
 
-Ta bort kontrollen av pricecode i alla price category implementationer.
+* Skapa ett interface som heter förslagsvis priceCategory. Skapa en methodsignatur i interfacet som returnerar en
+double och tar in en int. Skapa en konkret implementation för varje strategi som implementerar interfacet.
+   
+* I konstruktorn låt den ta in strategi interfacet också! Skapa en till metod som bara skickar tillbaka amount med 
+hjälp av interfacet istället. 
 
-Ta bort parametern pricecode.
+* Testfel! Diskussion: Ett test failar och det är för att vi nu inte använder pricecode längre. Skapa en metod som sätter Pricestrategy istället
 
-Inför setPriceCategory i Movie?
 
-Med arv:
+**Med arv:**
 
 Skapa subklass ChildrenMovie.
 Kopiera hela price-metoden från Movie till ChildrenMovie.
