@@ -178,7 +178,7 @@ modifiera i Rental eller Customer.
     (c) byt ut så att det är tmpamount som används istället
     (d) nu kan du använda extraxt method
     
-    Gör så med resterande amountuträkningar
+Gör så med resterande amountuträkningar
 ```java
 double tmpAmount = 0;
 tmpAmount += 2;
