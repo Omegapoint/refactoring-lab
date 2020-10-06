@@ -113,7 +113,7 @@ frequentRenterPoint += thisFrequentRenterPoint
 
 ```
 
-returnera olika beroende på villkor istället för att summera ihop och returnera resultatet. Börja
+Returnera olika beroende på villkor istället för att summera ihop och returnera resultatet. Börja
 med att bryta det till en if-else istället för ternary. Låt dem se om de kan förända det till ternary.
 
  extract method på fyra rader om thisFrequentRenterPoint
@@ -185,18 +185,16 @@ if (getDaysRented() > 2)
 tmpAmount += (getDaysRented() - 2) * 1.5;
 thisAmount += tmpAmount;
 ``` 
-    
+
 Gör så med resterande amountuträkningar
 * Nu gäller det att vi får in detta till Movie igen eftersom den inte tillhör Rental. Använd Move method och flytta 
 till Movie. Tyvärr får vi än så länge med rental men det är ok.
+* Eftersom vi ändå bara hämtar rentaldays från rental så behöver vi inte skicka med hela Rental-referensen utan bara int daysrented. Markera rental.getDaysRented och använd introduce variable och även introduce parameter. 
 
-**Diskussion:** Blev det egentligen bättre nu? Nu skickar vi med ett rental-objekt in i Movie?
+**Diskussion:** Blev det egentligen bättre nu? Nu skickar vi med ett rental-data in i Movie?
 
 #### Del B
 **Strategipattern:** 
-
-* Eftersom vi ändå bara hämtar rentaldays från rental så behöver vi inte skicka med hela Rental-referensen utan
-bara int daysrented. Markera rental.getDaysRented och använd introduce variable och även introduce parameter. 
 
 Nu skulle vi vilja få bort switchsatsen som vi kan lösa med hjälp av polymorfi. Detta kan upnås med hjälp av 
 arv eller interface. Vi kommer att välja att göra med strategi. Alltså en egenskap istället för något man är. 
@@ -207,12 +205,17 @@ arv eller interface. Vi kommer att välja att göra med strategi. Alltså en ege
 
 * Skapa ett interface som heter förslagsvis priceCategory. Skapa en methodsignatur i interfacet som returnerar en
 double och tar in en int. Skapa en konkret implementation för varje strategi som implementerar interfacet.
+
+**Diskussion:** Innehåller detta steg en refaktorisering? Är detta en redesign?
+
+#### DEL C
    
 * I konstruktorn låt den ta in strategi interfacet också! Skapa en till metod som bara skickar tillbaka amount med 
 hjälp av interfacet istället. 
 
-* Testfel! Diskussion: Ett test failar och det är för att vi nu inte använder pricecode längre. Skapa en metod som sätter Pricestrategy istället
+* Testfel! Skapa en metod som sätter Pricestrategy istället
 
+**Diskussion:** Ett test failar och det är för att vi nu inte använder pricecode längre. Är vi klara nu?
 
 **Med arv:**
 

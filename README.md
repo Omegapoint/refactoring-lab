@@ -22,15 +22,33 @@ Kör enhetstestet i CustomerTest.
 Vi ärver en halvrörig kod. Vad kan vi göra för att göra koden enklare och lättare att
 förstå?
 
-- Extrahera metod för prisberäkning; amountFor
-- ...
+Som huvudmål i denna del vill vi extrahera en metod för prisberäkning: charge().
 
 Kodlukter:
-
 - Lång metod
 - Stor klass
 - Funktionsavundsjuka
 - Tillfälliga variabler
+
+### Del A
+- Bryt ut `switch`-satsen ur loopen till en egen metod. Testa skillnaden med 
+att göra det själv och att låta ditt IDE göra det åt dig.
+
+### Del B
+- Flytta den nya metoden till Rental
+
+### Del C
+- Gör inline på anropet till den nya metoden i `Customer::statement`.
+- Byt ++ mot +=
+- Summera till en temp-variabel och lägg till tempvariabeln till summan
+- Bryt ut varje beräkning till en egen metod.
+- Flytta varje ny metod till Rental
+
+### Del D
+- Pilla isär loopen till en loop per beräkning. 
+- Bryt ut varje loop till en egen metod.
+- EXTRA: Bygg om looparna till att använda streams.
+- Ersätt temp-variabler med query. 
 
 ## Del 2: Isolera prisberäkningen.
 
