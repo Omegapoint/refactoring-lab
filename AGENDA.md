@@ -171,8 +171,8 @@ Inuti varje switch-sats finns några små klasser som vill komma ut. Open-Closed
 modifiera i Rental eller Customer.
 
 #### Del A
-
-* Extrahera tillfällig amount-metod i rental.
+* Flytta charge() till Movie
+* Extrahera tillfällig amount-metod i switch-sats i Movie.
     (a) skapa en variabel som håller tmpamount = 0
     (b) lägg thisAmount += tmpamount
     (c) byt ut så att det är tmpamount som används istället
