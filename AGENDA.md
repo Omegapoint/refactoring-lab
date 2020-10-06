@@ -172,6 +172,9 @@ modifiera i Rental eller Customer.
 
 #### Del A
 * Flytta charge() till Movie
+* Eftersom vi ändå bara hämtar rentaldays från rental så behöver vi inte skicka med hela 
+Rental-referensen utan bara int daysrented. Markera rental.getDaysRented och använd introduce variable och även introduce parameter. 
+* Städa upp each.movie.charge() -> each.getMovie().charge() i Customer
 * Extrahera tillfällig amount-metod i switch-sats i Movie.
     (a) skapa en variabel som håller tmpamount = 0
     (b) lägg thisAmount += tmpamount
@@ -185,11 +188,8 @@ if (getDaysRented() > 2)
 tmpAmount += (getDaysRented() - 2) * 1.5;
 thisAmount += tmpAmount;
 ``` 
-
-Gör så med resterande amountuträkningar
-* Nu gäller det att vi får in detta till Movie igen eftersom den inte tillhör Rental. Använd Move method och flytta 
-till Movie. Tyvärr får vi än så länge med rental men det är ok.
-* Eftersom vi ändå bara hämtar rentaldays från rental så behöver vi inte skicka med hela Rental-referensen utan bara int daysrented. Markera rental.getDaysRented och använd introduce variable och även introduce parameter. 
+Fortsätt med resterande. I Movie finns nu metoderna charge (publik), childrensCharge() (privat), 
+newReleaseCharge() (privat) samt regularCharge().
 
 **Diskussion:** Blev det egentligen bättre nu? Nu skickar vi med ett rental-data in i Movie?
 
@@ -202,11 +202,11 @@ arv eller interface. Vi kommer att välja att göra med strategi. Alltså en ege
     (b) Med interface blir det ett har eller kan beroende.
 
 **(Visa ett kort exempel på tavlan om composition over inheritance)** 
+* Extrahera anropet till getPriceCode till en lokal variabel
+* Extrahera en tillfällig metod getPriceForCategory(int daysRented, int priceCode)
+* Extrahera metoden till delegate Refactorings -> Extract -> Delegate. PriceCalculatorImpl
 
-* Skapa ett interface som heter förslagsvis priceCategory. Skapa en methodsignatur i interfacet som returnerar en
-double och tar in en int. Skapa en konkret implementation för varje strategi som implementerar interfacet.
-
-**Diskussion:** Innehåller detta steg en refaktorisering? Är detta en redesign?
+**Diskussion:** Är detta steg refaktorisering? Eller är detta en redesign?
 
 #### DEL C
    
