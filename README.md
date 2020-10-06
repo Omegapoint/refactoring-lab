@@ -56,8 +56,28 @@ Vi får reda på att butiken kommer att vilja ha fler typer av priser
 och kunna byta prissättning på filmerna efterhand. Kan vi förändra
 koden så att det blir lättare att stödja en sådan funktion?
 
+
+### Del A
 - Flytta metoden price/amount vidare från Rental till Movie.
-- Dela upp switch-satsen i tre klasser och ett interface (strategy pattern).
+- Vi behöver bara rentaldays från rental.
+
+### Del B
+- Extrahera getPriceCode till lokal variabel
+- Extrahera _tillfällig_ metod priceForCategory(int daysRented, int priceCode)
+- Extrahera metoden till delegate PriceCalculatorImpl
+
+
+### Del C
+- Flytta initiering till konstruktor-parameter.
+- Skapa interface PriceCalculator
+- Kopiera PriceCalculatorImpl och döp till RegularPriceCalculator
+- Ta bort delar som ej har med REGULAR_PRICE_CODE ur switch
+- Byt ut till RegularPriceCalculator i test-konstruktor
+
+### Del D
+- Lägg till metod för att ändra beräkningsalgoritm
+- Rensa upp switch statements
+- Safe delete på priceCode i PriceCalculator::amountForCategory
 
 Kodlukter:
 
