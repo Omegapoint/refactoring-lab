@@ -209,13 +209,23 @@ arv eller interface. Vi kommer att välja att göra med strategi. Alltså en ege
 **Diskussion:** Är detta steg refaktorisering? Eller är detta en redesign?
 
 #### DEL C
-   
-* I konstruktorn låt den ta in strategi interfacet också! Skapa en till metod som bara skickar tillbaka amount med 
-hjälp av interfacet istället. 
 
-* Testfel! Skapa en metod som sätter Pricestrategy istället
+* Flytta initieringen av PriceCalculatorImpl till konstruktorn. Ta in den som parameter i konstruktorn.
+* Kopiera klassen PriceCalculatorImpl (F5) och skapa RegularPriceCalculator
+* Inaktivera de delar av switchsatsen som inte har med Regular att göra.
+* Byt ut PriceCalculatorImpl till RegularPriceCalculator i testet
+* Upprepa för Childrens och New Release (i det senare fallet kan PriceCalculatorImpl döpas om)
 
-**Diskussion:** Ett test failar och det är för att vi nu inte använder pricecode längre. Är vi klara nu?
+* Testfel!
+
+**Diskussion:** Ett test failar och det är för att vi nu inte använder pricecode längre. Varför?
+
+#### DEL D
+* Lägg till metod för att ändra calculator
+* Ta bort switch statement i alla PriceCalculator.
+* Safe delete på priceCode i PriceCalculator::amountForCategory
+
+**Diskussion:** Ta bort priceCategory? Är vi klara nu?
 
 **Med arv:**
 
