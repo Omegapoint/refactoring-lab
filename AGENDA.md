@@ -5,7 +5,8 @@
 
 ## Förväntningar (10 min/15 min)
 
-Vad har du för förväntningar?
+(dela ut post-it-lappar)
+Vad har du för förväntningar? (en per lapp)
 Vad betyder det för dig?
 
 ## Vad betyder refaktorisering? (10 min/25 min)
