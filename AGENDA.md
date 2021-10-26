@@ -100,6 +100,8 @@ Då mäter man vart ens största minnes och tidskrävande operationer är någon
 Byt ut ++ mot += för att göra algoritmen tydligare.
 i Customer.statement - frequentRenterPoint
 int thisFrequentRenterPoint
+
+Vi bryter ut tmpPoints för att göra (o)beroendet till frequentrenterpoint tydligare både för vertyget och oss själva.
 ...
 frequentRenterPoint += thisFrequentRenterPoint
 ```java
@@ -195,14 +197,20 @@ newReleaseCharge() (privat) samt regularCharge().
 **Diskussion:** Blev det egentligen bättre nu? Nu skickar vi med ett rental-data in i Movie?
 
 #### Del B
-**Strategipattern:** 
 
 Nu skulle vi vilja få bort switchsatsen som vi kan lösa med hjälp av polymorfi. Detta kan upnås med hjälp av 
 arv eller interface. Vi kommer att välja att göra med strategi. Alltså en egenskap istället för något man är. 
     (a) Med arv så har vi ett är beroende. 
     (b) Med interface blir det ett har eller kan beroende.
 
-**(Visa ett kort exempel på tavlan om composition over inheritance)** 
+**Design patterns**
+
+Kort genomgång av Design Patterns, vad är det?
+ * Visa två-tre typer av patterns
+ * Strategipattern
+ * (Visa ett kort exempel på tavlan om composition over inheritance)
+
+Koda live:
 * Extrahera anropet till getPriceCode till en lokal variabel
 * Extrahera en tillfällig metod getPriceForCategory(int daysRented, int priceCode)
 * Extrahera metoden till delegate Refactorings -> Extract -> Delegate. PriceCalculatorImpl
