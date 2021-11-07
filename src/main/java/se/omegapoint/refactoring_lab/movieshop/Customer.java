@@ -32,7 +32,7 @@ public class Customer {
         String tmpResult = "";
         for (Rental each : rentals) {
             // show figures for this rental
-            tmpResult += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.charge()) + "\n";
+            tmpResult += "\t" + each.getMovie().getTitle() + "\t" + each.charge() + "\n";
         }
         return tmpResult;
     }
