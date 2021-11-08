@@ -174,25 +174,10 @@ Inuti varje switch-sats finns några små klasser som vill komma ut. Open-Closed
 modifiera i Rental eller Customer.
 
 #### Del A
-* Flytta charge() till Movie
-* Eftersom vi ändå bara hämtar rentaldays från rental så behöver vi inte skicka med hela 
-Rental-referensen utan bara int daysrented. Markera rental.getDaysRented och använd introduce variable och även introduce parameter. 
-* Städa upp each.movie.charge() -> each.getMovie().charge() i Customer
-* Extrahera tillfällig amount-metod i switch-sats i Movie.
-    (a) skapa en variabel som håller tmpamount = 0
-    (b) lägg thisAmount += tmpamount
-    (c) byt ut så att det är tmpamount som används istället
-    (d) nu kan du använda extraxt method
-
-```java
-double tmpAmount = 0;
-tmpAmount += 2;
-if (getDaysRented() > 2)
-tmpAmount += (getDaysRented() - 2) * 1.5;
-thisAmount += tmpAmount;
-``` 
-Fortsätt med resterande. I Movie finns nu metoderna charge (publik), childrensCharge() (privat), 
-newReleaseCharge() (privat) samt regularCharge().
+* Bryt ut daysRented till lokal variabel med introduce variable (lägg ovanför thisAmount)
+* Bryt ut till chargeForDaysRented(daysRented)
+* Flytta chargeForDaysRented() till Movie
+Vi får med hela Customer-objektet nu, men vi använder movie från Customer-objektet istället för direkt. Använd priceCode direkt. Städa bort Customer ur parameterlistan.
 
 **Diskussion:** Blev det egentligen bättre nu? Nu skickar vi med ett rental-data in i Movie?
 
@@ -212,18 +197,21 @@ Kort genomgång av Design Patterns, vad är det?
 
 Koda live:
 * Extrahera anropet till getPriceCode till en lokal variabel
-* Extrahera en tillfällig metod getPriceForCategory(int daysRented, int priceCode)
+* Extrahera en tillfällig metod chargeForDaysAndPriceCode(int daysRented, int priceCode)
 * Extrahera metoden till delegate Refactorings -> Extract -> Delegate. PriceCalculatorImpl
+* Städa upp i chargeForDaysRented(int daysRented)
 
 **Diskussion:** Är detta steg refaktorisering? Eller är detta en redesign?
 
 #### DEL C
 
-* Flytta initieringen av PriceCalculatorImpl till konstruktorn. Ta in den som parameter i konstruktorn.
+* Flytta initieringen av PriceCalculatorImpl till konstruktorn i Movie. Ta in den som parameter i konstruktorn.
+* Kontrollera hur det ser ut i testet (kör testet)
 * Kopiera klassen PriceCalculatorImpl (F5) och skapa RegularPriceCalculator
 * Inaktivera de delar av switchsatsen som inte har med Regular att göra.
-* Byt ut PriceCalculatorImpl till RegularPriceCalculator i testet
+* Byt ut PriceCalculatorImpl till RegularPriceCalculator i testet (och kör testet)
 * Upprepa för Childrens och New Release (i det senare fallet kan PriceCalculatorImpl döpas om)
+* Byt ut skapandet i testet (även för setPriceCode-testet)
 
 * Testfel!
 
