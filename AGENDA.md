@@ -1,5 +1,5 @@
 # Agenda (avsett för läraren)
-(Stegtid / Total tid)
+(Stegtid / Total tid vid avslutat steg)
 
 ## Presentera er! (5 min/5 min)
 
@@ -17,7 +17,7 @@ Vad betyder det för dig?
 
 ## Fowler-katan (5 min/30 min)
 
-En lätt moderniserad version av av övningen från Fowlers bok.
+En lätt moderniserad version av övningen från Fowlers bok.
 Vad är en kata?
 
 "Kata är en rad förutbestämda rörelser, som utförs mot "osynliga" motståndare i luften.
@@ -27,27 +27,34 @@ att de sedan snabbt och korrekt kan användas i en uppkommen nödvärns-situatio
 
 Det är också ett släkte plattmaskar. Och ett vattendrag i Centralafrikanska republiken.
 
-### Genomgång (55 min/1h 25 min)
+---
+## Genomgång (55 min/1h 25 min)
 
 Denna kata består av 4 olika små delar och upplägget är sådant att:
-* Läraren gör uppgiften 
+* Läraren gör uppgiften
 * Studenterna härmar
 * Diskutera varför. Till varje del så finns en diskussionsfråga.
 
 Se till att alla har hittat repot: https://github.com/omegapoint/refactor-lab
-    * 
-#### Del A
-(dema 10 min, disussion, dema 10 min, diskussion, dema 10 min, diskussion)
+
+
+## Kata 1
+###  Dela upp och organisera om koden i statement-metoden
+
+### Del 1.A _(10 min)_
+(demo/labb 10 min, disussion, demo/labb 10 min, diskussion, demo/labb 10 min, diskussion)
+
+_Förklara lite snabbt (visa) vad statement metoden gör_
 
 switch priceCode => extract method "int amountFor(Rental)", för hand.
 "Råka" göra fel och orsaka ett avrundningsfel => Rätta genom att göra om variabeln till en double.
 Gör om refaktorisering men från menyn.
 Snygga upp parameter (namnet) och "result"-variabel.
 
-**Disskusion:** Vad är skillnaden att använda sig av använda sig av inbyggda verktyg? Lättheten att göra fel även vid 
+**Disskusion:** Vad är skillnaden att använda sig av använda sig av inbyggda verktyg? Lättheten att göra fel även vid
 små refaktoriseringar.
 
-#### Del B
+### Del 1.B _(10 min)_
 
 data envy i amountFor.
 Flytta den nya metoden till Rental - manuell, klipp ur method-body.
@@ -75,15 +82,14 @@ double charge() {
         return thisAmount;
     }
 ```
-(10 min)
 
-**Diskussion:** varför gjorde vi denna rekatorinseringen? 
+**Diskussion:** varför gjorde vi denna rekatorinseringen?
 
-#### Del C
+### Del 1.C _(15 min)_
 
 I statement - "replace temp with query", dvs inline på "thisAmount"
-  (behövs egentligen inte göras än)
-  kan motiveras av att man vill bryta ut metod "statementDetailsForRental"
+(behövs egentligen inte göras än)
+kan motiveras av att man vill bryta ut metod "statementDetailsForRental"
 ```java
         // show figures for this rental
         result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getThisAmount()) + "\n";
@@ -93,13 +99,15 @@ I statement - "replace temp with query", dvs inline på "thisAmount"
 Argument för:
 
 * Minskar beroendet. Behöver inte vara beroende av this amount
-* ska man spendera tid på mikroptimeringar? Ibland under en refaktorisering eller under en fas kan det vara bra att 
-faktiskt inte bry sig om performance ut att det gör man sedan när man anser att man är någorlunda klar med programmet. 
-Då mäter man vart ens största minnes och tidskrävande operationer är någonstans och optimerar på plats.
+* ska man spendera tid på mikroptimeringar? Ibland under en refaktorisering eller under en fas kan det vara bra att
+  faktiskt inte bry sig om performance ut att det gör man sedan när man anser att man är någorlunda klar med programmet.
+  Då mäter man vart ens största minnes och tidskrävande operationer är någonstans och optimerar på plats.
 
 Byt ut ++ mot += för att göra algoritmen tydligare.
 i Customer.statement - frequentRenterPoint
 int thisFrequentRenterPoint
+
+Vi bryter ut tmpPoints för att göra (o)beroendet till frequentrenterpoint tydligare både för vertyget och oss själva.
 ...
 frequentRenterPoint += thisFrequentRenterPoint
 ```java
@@ -117,7 +125,7 @@ frequentRenterPoint += thisFrequentRenterPoint
 Returnera olika beroende på villkor istället för att summera ihop och returnera resultatet. Börja
 med att bryta det till en if-else istället för ternary. Låt dem se om de kan förända det till ternary.
 
- extract method på fyra rader om thisFrequentRenterPoint
+extract method på fyra rader om thisFrequentRenterPoint
 move method till Rental
 
 ```java
@@ -126,102 +134,97 @@ move method till Rental
     }
 ```
 
-**Diskussion:** Vad är skillnaden mellan enkelt/lätt gentemot att vara van vid. 
+**Diskussion:** Vad är skillnaden mellan enkelt/lätt gentemot att vara van vid.
 
-#### Del D
-
-(10 min)
+### Del 1.D _(15 min)_
 
 Pilla isär loopen och pilla ut totalAmount-beräkningen till egen loop.
 
-När man får en metod som tar in en totalAmount och skickar tillbaka en totalamount. för att undvika skapa en tmpvariabel 
-tmpAmount för totalamount och sedan tilldela den efter loopen från värdet av tmpAmount. Då när du tar extract method så 
-kommer du inte få att den tar in samma sak som den returnerar. 
+När man får en metod som tar in en totalAmount och skickar tillbaka en totalamount. för att undvika skapa en tmpvariabel
+tmpAmount för totalamount och sedan tilldela den efter loopen från värdet av tmpAmount. Då när du tar extract method så
+kommer du inte få att den tar in samma sak som den returnerar.
 
-Ska denna då flyttas till Rentals? Nej för den handhar flera olika rentals. 
+Ska denna då flyttas till Rentals? Nej för den handhar flera olika rentals.
 
 Pilla ut "totalFrequentRenterPoints" på samma sätt som ovanstånde.
 
 Överkurs: Bygg om looparna till stream().mapToInt().sum(). (Inbyggd refaktorisering).
 
-Extrahera beskrivningsraderna och konvertera till stream. Det får de göra själva. Så elaka är vi. 
+Extrahera beskrivningsraderna och konvertera till stream. Det får de göra själva. Så elaka är vi.
 
 Nu kan man även göra replace tmpvariable with query instead. med andra ord kan vi ersätta totalAmount och Frequentpoints
-med ett metodanrop. 
+med ett metodanrop.
 
-### Sammanfattning
+### Sammanfattning _(5 min)_
 
 Skriv ner tre saker du skulle vilja komma ihåg.
 
-### Paus (15 min/1h 10 min)
+### Paus (15 min/1h 40 min)
 
 ### Repetition: en sak du ville komma ihåg
 
 Kodlukter: Långa metoder, dataavundsjuka.
 Refaktoriseringar: ??
 
-### Genomgång (30 min/1h 40 min)
+___
+## Genomgång (30 min/2h 10 min)
 
 Mål: Isolera prisberäkningen.
 
 Vi får reda på att butiken kommer att vilja ha fler typer av priser
-och kunna byta prissättning på filmerna efterhand. Kan vi förändra
+och kunna byta prissättning på filmerna allt eftersom. Kan vi förändra
 koden så att det blir lättare att stödja en sådan funktion?
 
 Inuti varje switch-sats finns några små klasser som vill komma ut. Open-Closed principle. Enklare att lägga till en ny priskategori utan att
 modifiera i Rental eller Customer.
 
-#### Del A
-* Flytta charge() till Movie
-* Eftersom vi ändå bara hämtar rentaldays från rental så behöver vi inte skicka med hela 
-Rental-referensen utan bara int daysrented. Markera rental.getDaysRented och använd introduce variable och även introduce parameter. 
-* Städa upp each.movie.charge() -> each.getMovie().charge() i Customer
-* Extrahera tillfällig amount-metod i switch-sats i Movie.
-    (a) skapa en variabel som håller tmpamount = 0
-    (b) lägg thisAmount += tmpamount
-    (c) byt ut så att det är tmpamount som används istället
-    (d) nu kan du använda extraxt method
-
-```java
-double tmpAmount = 0;
-tmpAmount += 2;
-if (getDaysRented() > 2)
-tmpAmount += (getDaysRented() - 2) * 1.5;
-thisAmount += tmpAmount;
-``` 
-Fortsätt med resterande. I Movie finns nu metoderna charge (publik), childrensCharge() (privat), 
-newReleaseCharge() (privat) samt regularCharge().
+## Kata 2
+### Isolera prisberäkningen
+### Del 2.A
+* Bryt ut daysRented till lokal variabel med introduce variable (lägg ovanför thisAmount)
+* Bryt ut till chargeForDaysRented(daysRented)
+* Flytta chargeForDaysRented() till Movie
+  Vi får med hela Customer-objektet nu, men vi använder movie från Customer-objektet istället för direkt. Använd priceCode direkt. Städa bort Customer ur parameterlistan.
 
 **Diskussion:** Blev det egentligen bättre nu? Nu skickar vi med ett rental-data in i Movie?
 
-#### Del B
-**Strategipattern:** 
+### Del 2.B - Design patterns
 
-Nu skulle vi vilja få bort switchsatsen som vi kan lösa med hjälp av polymorfi. Detta kan upnås med hjälp av 
-arv eller interface. Vi kommer att välja att göra med strategi. Alltså en egenskap istället för något man är. 
-    (a) Med arv så har vi ett är beroende. 
-    (b) Med interface blir det ett har eller kan beroende.
+Nu skulle vi vilja få bort switchsatsen som vi kan lösa med hjälp av polymorfi. Detta kan upnås med hjälp av
+arv eller interface. Vi kommer att välja att göra med strategi. Alltså en egenskap istället för något man är.
+(a) Med arv så har vi ett är beroende.
+(b) Med interface blir det ett har eller kan beroende.
 
-**(Visa ett kort exempel på tavlan om composition over inheritance)** 
+**Design patterns**
+
+Kort genomgång av Design Patterns, vad är det? _(det finns en powerpoint presentation i repot)_
+* Visa två-tre typer av patterns
+* Strategipattern
+* (Visa ett kort exempel på tavlan om composition over inheritance)
+
+Koda live:
 * Extrahera anropet till getPriceCode till en lokal variabel
-* Extrahera en tillfällig metod getPriceForCategory(int daysRented, int priceCode)
+* Extrahera en tillfällig metod chargeForDaysAndPriceCode(int daysRented, int priceCode)
 * Extrahera metoden till delegate Refactorings -> Extract -> Delegate. PriceCalculatorImpl
+* Städa upp i chargeForDaysRented(int daysRented)
 
 **Diskussion:** Är detta steg refaktorisering? Eller är detta en redesign?
 
-#### DEL C
+### Del 2.C
 
-* Flytta initieringen av PriceCalculatorImpl till konstruktorn. Ta in den som parameter i konstruktorn.
+* Flytta initieringen av PriceCalculatorImpl till konstruktorn i Movie. Ta in den som parameter i konstruktorn.
+* Kontrollera hur det ser ut i testet (kör testet)
 * Kopiera klassen PriceCalculatorImpl (F5) och skapa RegularPriceCalculator
 * Inaktivera de delar av switchsatsen som inte har med Regular att göra.
-* Byt ut PriceCalculatorImpl till RegularPriceCalculator i testet
+* Byt ut PriceCalculatorImpl till RegularPriceCalculator i testet (och kör testet)
 * Upprepa för Childrens och New Release (i det senare fallet kan PriceCalculatorImpl döpas om)
+* Byt ut skapandet i testet (även för setPriceCode-testet)
 
 * Testfel!
 
 **Diskussion:** Ett test failar och det är för att vi nu inte använder pricecode längre. Varför?
 
-#### DEL D
+### Del 2.D
 * Lägg till metod för att ändra calculator
 * Ta bort switch statement i alla PriceCalculator.
 * Safe delete på priceCode i PriceCalculator::amountForCategory
@@ -248,17 +251,17 @@ Begränsning -> film kan inte byta kategori under sin livstid.
 Kan illustreras genom att ta bort setPriceCategory.
 getPriceCategory kan returnera konstant; constructor parameter försvinner.
 
-### Övning (60 min/2h 40 min)
+### Övning (60 min/3h 10 min)
 
 Gör själva parvis.
 
-## Sammanfattning (20 min/3h)
+___
+## Sammanfattning (20 min/3h 30 min)
 
 Kodlukter: Switch-sats. Överkomplicerade beräkningar med mutationer.
 Refaktoriseringar: ??
 
 En punkt från varje deltagare.
-
 
 ### Extra material
 
