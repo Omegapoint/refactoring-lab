@@ -2,9 +2,9 @@
 
 ## Beskrivning
 
-Semnarium för dig som tittat i Refactoring-menyn och känner på dig att det finns
+Seminarium för dig som tittat i Refactoring-menyn och känner på dig att det finns
 betydligt mer bortom "Rename". Genom konkreta demo och praktiska övningar
-bekantar vi oss närmare med konkreta handgrepp och tar dessa som utgångpunkt
+bekantar vi oss närmare med konkreta handgrepp och tar dessa som utgångspunkt
 för diskussioner om pragmatik och filosofi.
 
 Tid: 4h
@@ -17,7 +17,7 @@ För att öppna i IntelliJ: välj "Import Project" och markera biblioteket "refa
 
 Kör enhetstestet i CustomerTest.
 
-## Del 1: Dela upp och och organisera om koden i statement-metoden
+## Kata 1: Dela upp och organisera om koden i statement-metoden
 
 Vi ärver en halvrörig kod. Vad kan vi göra för att göra koden enklare och lättare att
 förstå?
@@ -30,51 +30,49 @@ Kodlukter:
 - Funktionsavundsjuka
 - Tillfälliga variabler
 
-### Del A
+### Del 1.A
 - Bryt ut `switch`-satsen ur loopen till en egen metod. Testa skillnaden med 
 att göra det själv och att låta ditt IDE göra det åt dig.
 
-### Del B
+### Del 1.B
 - Flytta den nya metoden till Rental
 
-### Del C
+### Del 1.C
 - Gör inline på anropet till den nya metoden i `Customer::statement`.
 - Byt ++ mot +=
 - Summera till en temp-variabel och lägg till tempvariabeln till summan
 - Bryt ut varje beräkning till en egen metod.
 - Flytta varje ny metod till Rental
 
-### Del D
+### Del 1.D
 - Pilla isär loopen till en loop per beräkning. 
 - Bryt ut varje loop till en egen metod.
 - EXTRA: Bygg om looparna till att använda streams.
 - Ersätt temp-variabler med query. 
 
-## Del 2: Isolera prisberäkningen.
+## Kata 2: Isolera prisberäkningen.
 
 Vi får reda på att butiken kommer att vilja ha fler typer av priser
 och kunna byta prissättning på filmerna efterhand. Kan vi förändra
 koden så att det blir lättare att stödja en sådan funktion?
 
-
-### Del A
+### Del 2.A
 - Flytta metoden price/amount vidare från Rental till Movie.
 - Vi behöver bara rentaldays från rental.
 
-### Del B
+### Del 2.B
 - Extrahera getPriceCode till lokal variabel
 - Extrahera _tillfällig_ metod priceForCategory(int daysRented, int priceCode)
 - Extrahera metoden till delegate PriceCalculatorImpl
 
-
-### Del C
+### Del 2.C
 - Flytta initiering till konstruktor-parameter.
 - Skapa interface PriceCalculator
 - Kopiera PriceCalculatorImpl och döp till RegularPriceCalculator
 - Ta bort delar som ej har med REGULAR_PRICE_CODE ur switch
 - Byt ut till RegularPriceCalculator i test-konstruktor
 
-### Del D
+### Del 2.D
 - Lägg till metod för att ändra beräkningsalgoritm
 - Rensa upp switch statements
 - Safe delete på priceCode i PriceCalculator::amountForCategory

@@ -1,5 +1,5 @@
 # Agenda (avsett för läraren)
-(Stegtid / Total tid)
+(Stegtid / Total tid vid avslutat steg)
 
 ## Presentera er! (5 min/5 min)
 
@@ -17,7 +17,7 @@ Vad betyder det för dig?
 
 ## Fowler-katan (5 min/30 min)
 
-En lätt moderniserad version av av övningen från Fowlers bok.
+En lätt moderniserad version av övningen från Fowlers bok.
 Vad är en kata?
 
 "Kata är en rad förutbestämda rörelser, som utförs mot "osynliga" motståndare i luften.
@@ -27,7 +27,8 @@ att de sedan snabbt och korrekt kan användas i en uppkommen nödvärns-situatio
 
 Det är också ett släkte plattmaskar. Och ett vattendrag i Centralafrikanska republiken.
 
-### Genomgång (55 min/1h 25 min)
+---
+## Genomgång (55 min/1h 25 min)
 
 Denna kata består av 4 olika små delar och upplägget är sådant att:
 * Läraren gör uppgiften 
@@ -35,9 +36,15 @@ Denna kata består av 4 olika små delar och upplägget är sådant att:
 * Diskutera varför. Till varje del så finns en diskussionsfråga.
 
 Se till att alla har hittat repot: https://github.com/omegapoint/refactor-lab
-    * 
-#### Del A
-(dema 10 min, disussion, dema 10 min, diskussion, dema 10 min, diskussion)
+
+
+## Kata 1
+###  Dela upp och organisera om koden i statement-metoden
+
+### Del 1.A _(10 min)_
+(demo/labb 10 min, disussion, demo/labb 10 min, diskussion, demo/labb 10 min, diskussion)
+
+_Förklara lite snabbt (visa) vad statement metoden gör_
 
 switch priceCode => extract method "int amountFor(Rental)", för hand.
 "Råka" göra fel och orsaka ett avrundningsfel => Rätta genom att göra om variabeln till en double.
@@ -47,7 +54,7 @@ Snygga upp parameter (namnet) och "result"-variabel.
 **Disskusion:** Vad är skillnaden att använda sig av använda sig av inbyggda verktyg? Lättheten att göra fel även vid 
 små refaktoriseringar.
 
-#### Del B
+### Del 1.B _(10 min)_
 
 data envy i amountFor.
 Flytta den nya metoden till Rental - manuell, klipp ur method-body.
@@ -75,11 +82,10 @@ double charge() {
         return thisAmount;
     }
 ```
-(10 min)
 
 **Diskussion:** varför gjorde vi denna rekatorinseringen? 
 
-#### Del C
+### Del 1.C _(15 min)_
 
 I statement - "replace temp with query", dvs inline på "thisAmount"
   (behövs egentligen inte göras än)
@@ -130,9 +136,7 @@ move method till Rental
 
 **Diskussion:** Vad är skillnaden mellan enkelt/lätt gentemot att vara van vid. 
 
-#### Del D
-
-(10 min)
+### Del 1.D _(15 min)_
 
 Pilla isär loopen och pilla ut totalAmount-beräkningen till egen loop.
 
@@ -151,29 +155,32 @@ Extrahera beskrivningsraderna och konvertera till stream. Det får de göra sjä
 Nu kan man även göra replace tmpvariable with query instead. med andra ord kan vi ersätta totalAmount och Frequentpoints
 med ett metodanrop. 
 
-### Sammanfattning
+### Sammanfattning _(5 min)_
 
 Skriv ner tre saker du skulle vilja komma ihåg.
 
-### Paus (15 min/1h 10 min)
+### Paus (15 min/1h 40 min)
 
 ### Repetition: en sak du ville komma ihåg
 
 Kodlukter: Långa metoder, dataavundsjuka.
 Refaktoriseringar: ??
 
-### Genomgång (30 min/1h 40 min)
+___
+## Genomgång (30 min/2h 10 min)
 
 Mål: Isolera prisberäkningen.
 
 Vi får reda på att butiken kommer att vilja ha fler typer av priser
-och kunna byta prissättning på filmerna efterhand. Kan vi förändra
+och kunna byta prissättning på filmerna allt eftersom. Kan vi förändra
 koden så att det blir lättare att stödja en sådan funktion?
 
 Inuti varje switch-sats finns några små klasser som vill komma ut. Open-Closed principle. Enklare att lägga till en ny priskategori utan att
 modifiera i Rental eller Customer.
 
-#### Del A
+## Kata 2
+### Isolera prisberäkningen
+### Del 2.A
 * Bryt ut daysRented till lokal variabel med introduce variable (lägg ovanför thisAmount)
 * Bryt ut till chargeForDaysRented(daysRented)
 * Flytta chargeForDaysRented() till Movie
@@ -181,7 +188,7 @@ Vi får med hela Customer-objektet nu, men vi använder movie från Customer-obj
 
 **Diskussion:** Blev det egentligen bättre nu? Nu skickar vi med ett rental-data in i Movie?
 
-#### Del B
+### Del 2.B - Design patterns
 
 Nu skulle vi vilja få bort switchsatsen som vi kan lösa med hjälp av polymorfi. Detta kan upnås med hjälp av 
 arv eller interface. Vi kommer att välja att göra med strategi. Alltså en egenskap istället för något man är. 
@@ -190,7 +197,7 @@ arv eller interface. Vi kommer att välja att göra med strategi. Alltså en ege
 
 **Design patterns**
 
-Kort genomgång av Design Patterns, vad är det?
+Kort genomgång av Design Patterns, vad är det? _(det finns en powerpoint presentation i repot)_
  * Visa två-tre typer av patterns
  * Strategipattern
  * (Visa ett kort exempel på tavlan om composition over inheritance)
@@ -203,7 +210,7 @@ Koda live:
 
 **Diskussion:** Är detta steg refaktorisering? Eller är detta en redesign?
 
-#### DEL C
+### Del 2.C
 
 * Flytta initieringen av PriceCalculatorImpl till konstruktorn i Movie. Ta in den som parameter i konstruktorn.
 * Kontrollera hur det ser ut i testet (kör testet)
@@ -217,7 +224,7 @@ Koda live:
 
 **Diskussion:** Ett test failar och det är för att vi nu inte använder pricecode längre. Varför?
 
-#### DEL D
+### Del 2.D
 * Lägg till metod för att ändra calculator
 * Ta bort switch statement i alla PriceCalculator.
 * Safe delete på priceCode i PriceCalculator::amountForCategory
@@ -244,17 +251,17 @@ Begränsning -> film kan inte byta kategori under sin livstid.
 Kan illustreras genom att ta bort setPriceCategory.
 getPriceCategory kan returnera konstant; constructor parameter försvinner.
 
-### Övning (60 min/2h 40 min)
+### Övning (60 min/3h 10 min)
 
 Gör själva parvis.
 
-## Sammanfattning (20 min/3h)
+___
+## Sammanfattning (20 min/3h 30 min)
 
 Kodlukter: Switch-sats. Överkomplicerade beräkningar med mutationer.
 Refaktoriseringar: ??
 
 En punkt från varje deltagare.
-
 
 ### Extra material
 
