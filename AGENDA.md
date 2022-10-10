@@ -68,25 +68,25 @@ Byt namn till t.ex. charge().
 
 ```java
 double charge(){
-        double thisAmount=0;
-        // determine amount for each line
-        switch(getMovie().getPriceCode()){
+    double thisAmount=0;
+    // determine amount for each line
+    switch(getMovie().getPriceCode()){
         case Movie.REGULAR:
-        thisAmount+=2;
-        if(getDaysRented()>2)
-        thisAmount+=(getDaysRented()-2)*1.5;
-        break;
+            thisAmount+=2;
+            if(getDaysRented()>2)
+                thisAmount+=(getDaysRented()-2)*1.5;
+            break;
         case Movie.NEW_RELEASE:
-        thisAmount+=getDaysRented()*3;
-        break;
+            thisAmount+=getDaysRented()*3;
+            break;
         case Movie.CHILDRENS:
-        thisAmount+=1.5;
-        if(getDaysRented()>3)
-        thisAmount+=(getDaysRented()-3)*1.5;
-        break;
+            thisAmount+=1.5;
+            if(getDaysRented()>3)
+                thisAmount+=(getDaysRented()-3)*1.5;
+            break;
         }
-        return thisAmount;
-        }
+    return thisAmount;
+}
 ```
 
 **Diskussion:** varför gjorde vi denna rekatorinseringen?
@@ -98,9 +98,9 @@ I statement - "replace temp with query", dvs inline på "thisAmount"
 kan motiveras av att man vill bryta ut metod "statementDetailsForRental"
 
 ```java
-        // show figures for this rental
-        result+="\t"+each.getMovie().getTitle()+"\t"+String.valueOf(each.getThisAmount())+"\n";
-                totalAmount+=each.getThisAmount();
+// show figures for this rental
+result+="\t"+each.getMovie().getTitle()+"\t"+String.valueOf(each.getThisAmount())+"\n";
+totalAmount+=each.getThisAmount();
 ```
 
 Argument för:
@@ -119,14 +119,14 @@ Vi bryter ut tmpPoints för att göra (o)beroendet till frequentrenterpoint tydl
 frequentRenterPoint += thisFrequentRenterPoint
 
 ```java
-        // add frequent renter points
-        int tmpPoints=0;
-                tmpPoints+=1;
-                // add bonus for two days new release rental
-                if((each.getMovie().getPriceCode()==Movie.NEW_RELEASE)&&each.getDaysRented()>1){
-                tmpPoints+=1;
-                }
-                frequentRenterPoints+=tmpPoints;
+// add frequent renter points
+int tmpPoints=0;
+tmpPoints+=1;
+// add bonus for two days new release rental
+if((each.getMovie().getPriceCode()==Movie.NEW_RELEASE)&&each.getDaysRented()>1){
+    tmpPoints+=1;
+}
+frequentRenterPoints+=tmpPoints;
 
 ```
 
@@ -137,9 +137,9 @@ extract method på fyra rader om thisFrequentRenterPoint
 move method till Rental
 
 ```java
-    int getFrequentRentalPoints(){
-        return getMovie().getPriceCode()==Movie.NEW_RELEASE&&getDaysRented()>1?2:1;
-        }
+int getFrequentRentalPoints(){
+    return getMovie().getPriceCode()==Movie.NEW_RELEASE&&getDaysRented()>1?2:1;
+}
 ```
 
 **Diskussion:** Vad är skillnaden mellan enkelt/lätt gentemot att vara van vid.
@@ -200,27 +200,27 @@ Vi väljer att först se till att ta in beroendet till metoden.
 * Bryt ut daysRented till lokal variabel med introduce variable (lägg ovanför thisAmount)
 
 ```java
-    public double charge(){
-        int daysRented1=getDaysRented();
-        double thisAmount=0;
-        // determine amount for each line
-        switch(getMovie().getPriceCode()){
+public double charge(){
+    int daysRented1=getDaysRented();
+    double thisAmount=0;
+    // determine amount for each line
+    switch(getMovie().getPriceCode()){
         case Movie.REGULAR:
-        thisAmount+=2;
-        if(daysRented1>2)
-        thisAmount+=(daysRented1-2)*1.5;
-        break;
+            thisAmount+=2;
+            if(daysRented1>2)
+                thisAmount+=(daysRented1-2)*1.5;
+            break;
         case Movie.NEW_RELEASE:
-        thisAmount+=daysRented1*3;
-        break;
+            thisAmount+=daysRented1*3;
+            break;
         case Movie.CHILDRENS:
-        thisAmount+=1.5;
-        if(daysRented1>3)
-        thisAmount+=(daysRented1-3)*1.5;
-        break;
+            thisAmount+=1.5;
+            if(daysRented1>3)
+                thisAmount+=(daysRented1-3)*1.5;
+            break;
         }
-        return thisAmount;
-        }
+    return thisAmount;
+}
 
 ```
 
@@ -229,15 +229,15 @@ Vi väljer att först se till att ta in beroendet till metoden.
   Customer-objektet istället för direkt. Använd priceCode direkt. Städa bort Customer ur parameterlistan.
 
 ```java
-    public double charge(){
-        return chargeForDaysRented(getDaysRented());
-        }
+public double charge(){
+    return chargeForDaysRented(getDaysRented()); 
+}
 
 private double chargeForDaysRented(int daysRented1){
-        double thisAmount=0;
-        //switch statement
-        return thisAmount;
-        }
+    double thisAmount=0;
+    //switch statement
+    return thisAmount;
+}
 
 ```
 
@@ -249,10 +249,10 @@ private double chargeForDaysRented(int daysRented1){
 
 ```java
 double tmpAmount=0;
-        tmpAmount+=2;
-        if(getDaysRented()>2)
-        tmpAmount+=(getDaysRented()-2)*1.5;
-        thisAmount+=tmpAmount;
+tmpAmount+=2;
+if(getDaysRented()>2)
+    tmpAmount+=(getDaysRented()-2)*1.5;
+thisAmount+=tmpAmount;
 ``` 
 
 Fortsätt med resterande. I Movie finns nu metoderna charge (publik), childrensCharge() (privat),
@@ -281,17 +281,17 @@ Koda live:
 * Extrahera en tillfällig metod chargeForDaysAndPriceCode(int daysRented, int priceCode)
 
 ```java
-   double chargeForDaysRented(int daysRented){
-        int priceCode=getPriceCode();
-        return chargeForDaysAndPriceCode(daysRented,priceCode);
-        }
+double chargeForDaysRented(int daysRented){
+    int priceCode=getPriceCode();
+    return chargeForDaysAndPriceCode(daysRented,priceCode); 
+}
 
-    private double chargeForDaysAndPriceCode(int daysRented,int priceCode){
-        double thisAmount=0;
-        // determine amount for each line
-        // switch
-        return thisAmount;
-        }
+private double chargeForDaysAndPriceCode(int daysRented,int priceCode){
+    double thisAmount=0;
+    // determine amount for each line
+    // switch
+    return thisAmount;
+}
 ```
 
 * Extrahera metoden till delegate Refactorings -> Extract -> Delegate. PriceCalculatorImpl
