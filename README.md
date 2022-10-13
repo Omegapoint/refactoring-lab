@@ -66,16 +66,20 @@ koden så att det blir lättare att stödja en sådan funktion?
 - Extrahera metoden till delegate PriceCalculatorImpl
 
 ### Del 2.C
-- Flytta initiering till konstruktor-parameter.
+- Flytta initiering till konstruktor-parameter. Hur ser testet ut nu?
 - Skapa interface PriceCalculator
 - Kopiera PriceCalculatorImpl och döp till RegularPriceCalculator
 - Ta bort delar som ej har med REGULAR_PRICE_CODE ur switch
-- Byt ut till RegularPriceCalculator i test-konstruktor
 
 ### Del 2.D
-- Lägg till metod för att ändra beräkningsalgoritm
-- Rensa upp switch statements
-- Safe delete på priceCode i PriceCalculator::amountForCategory
+- Byt ut till RegularPriceCalculator i test-konstruktor
+- Göt motsvarande för Children och New Release som gjordes för Regular
+- Kör testet
+
+### Del 2.E
+- Lägg till metod för att ändra calculator
+- Ta bort switch statement
+- Safe delete på priceCode
 
 Kodlukter:
 

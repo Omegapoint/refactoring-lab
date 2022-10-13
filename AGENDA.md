@@ -303,6 +303,7 @@ private double chargeForDaysAndPriceCode(int daysRented,int priceCode){
 
 * Flytta initieringen av PriceCalculatorImpl till konstruktorn i Movie. Ta in den som parameter i konstruktorn.
 * Kontrollera hur det ser ut i testet (kör testet)
+* Extract Interface
 * Kopiera klassen PriceCalculatorImpl (F5) och skapa RegularPriceCalculator
 * Inaktivera de delar av switchsatsen som inte har med Regular att göra.
 * Försök byta ut PriceCalculatorImpl mot RegularPriceCalculator i testet (går inte)
