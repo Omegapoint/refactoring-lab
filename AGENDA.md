@@ -206,22 +206,22 @@ Vi väljer att först se till att ta in beroendet till metoden.
 
 ```java
 public double charge(){
-    int daysRented1=getDaysRented();
+    int daysRented = getDaysRented();
     double thisAmount=0;
     // determine amount for each line
     switch(getMovie().getPriceCode()){
         case Movie.REGULAR:
         thisAmount+=2;
-        if(daysRented1>2)
-            thisAmount+=(daysRented1-2)*1.5;
+        if(daysRented > 2)
+            thisAmount+=(daysRented - 2)*1.5;
         break;
     case Movie.NEW_RELEASE:
-        thisAmount+=daysRented1*3;
+        thisAmount += daysRented * 3;
         break;
     case Movie.CHILDRENS:
-        thisAmount+=1.5;
-        if(daysRented1>3)
-            thisAmount+=(daysRented1-3)*1.5;
+        thisAmount += 1.5;
+        if(daysRented > 3)
+            thisAmount+=(daysRented - 3) * 1.5;
         break;
     }
     return thisAmount;
@@ -230,8 +230,9 @@ public double charge(){
 ```
 
 * Bryt ut tillfällig hjälpmetod chargeForDaysRented
-* Flytta chargeForDaysRented(daysRented) till Movie. Vi får med hela Customer-objektet nu, men vi använder movie från
-  Customer-objektet istället för direkt. Använd priceCode direkt. Städa bort Customer ur parameterlistan.
+* Flytta chargeForDaysRented(daysRented) till Movie. Vi får med hela Rental-objektet nu, men vi använder movie från
+  Rental-objektet istället för direkt. Använd priceCode direkt. Städa bort Rental ur parameterlistan.
+* Flytta nu även charge()
 
 ```java
 public double charge(){
@@ -308,19 +309,15 @@ private double chargeForDaysAndPriceCode(int daysRented,int priceCode){
 
 * Flytta initieringen av PriceCalculatorImpl till konstruktorn i Movie. Ta in den som parameter i konstruktorn.
 * Kontrollera hur det ser ut i testet (kör testet)
-* Kopiera klassen PriceCalculatorImpl (F5) och skapa RegularPriceCalculator
-* Inaktivera de delar av switchsatsen som inte har med Regular att göra.
-* Försök byta ut PriceCalculatorImpl mot RegularPriceCalculator i testet (går inte)
 * Gör `chargeForDaysRentedAndPriceCode` i PriceCalculatorImpl publik
-* Extrahera Interface (och ta med `chargeForDaysRentedAndPriceCode`)
-* Låt även RegularPriceCalculator implementera interfacet
-
-### Del 2.D
-
+* Extract Interface 
+* Kopiera klassen PriceCalculatorImpl (F5) och skapa RegularPriceCalculator
+* Inaktivera de delar av switchsatsen som inte har med Regular att göra (kasta exception).
+* Försök byta ut PriceCalculatorImpl mot RegularPriceCalculator i testet (går inte)
 * Ändra så att Movie tar in interface i konstruktorn istället
 * Byt ut PriceCalculatorImpl till RegularPriceCalculator i testet (och kör testet)
-* Gör så att endast Regular-fallet är implementerat i RegularPriceCalculator::chargeForDaysRentedAndPriceCode. De andra
-  kastar exception.
+
+### Del 2.D
 * Upprepa för Childrens och New Release (i det senare fallet kan PriceCalculatorImpl döpas om)
 * Byt ut skapandet i testet (även för setPriceCode-testet)
 
