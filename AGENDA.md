@@ -93,9 +93,7 @@ double charge() {
 
 ### Del 1.C _(15 min)_
 
-I statement - "replace temp with query", dvs inline på "thisAmount"
-(behövs egentligen inte göras än)
-kan motiveras av att man vill bryta ut metod "statementDetailsForRental"
+I statement - "replace temp with query", dvs inline på "thisAmount" kan motiveras av att man vill bryta ut metod "statementDetailsForRental"
 
 ```java
         // show figures for this rental
@@ -110,11 +108,9 @@ Argument för:
   faktiskt inte bry sig om performance ut att det gör man sedan när man anser att man är någorlunda klar med programmet.
   Då mäter man vart ens största minnes och tidskrävande operationer är någonstans och optimerar på plats.
 
-Byt ut ++ mot += för att göra algoritmen tydligare.
-i Customer.statement - frequentRenterPoint
-int thisFrequentRenterPoint
+Byt ut ++ mot += för att göra algoritmen kring `frequentRenterPoint` tydligare i `Customer.statement`
 
-Vi bryter ut tmpPoints för att göra (o)beroendet till frequentrenterpoint tydligare både för vertyget och oss själva.
+Vi bryter ut `tmpPoints` för att göra (o)beroendet till frequentrenterpoint tydligare både för vertyget och oss själva.
 ...
 frequentRenterPoint += thisFrequentRenterPoint
 
@@ -133,8 +129,8 @@ frequentRenterPoint += thisFrequentRenterPoint
 Returnera olika beroende på villkor istället för att summera ihop och returnera resultatet. Börja
 med att bryta det till en if-else istället för ternary. Låt dem se om de kan förända det till ternary.
 
-extract method på fyra rader om thisFrequentRenterPoint
-move method till Rental
+Extrahera ny metod med extract method från `int tmpPoints = 0;` till raden innan `frequentRenterPoints += tmpPoints`
+och fytta den nya metoden med move method till Rental
 
 ```java
     int getFrequentRentalPoints() {
@@ -145,6 +141,15 @@ move method till Rental
 **Diskussion:** Vad är skillnaden mellan enkelt/lätt gentemot att vara van vid.
 
 ### Del 1.D _(15 min)_
+Låt dem göra samma lika för beräkningen av figures
+
+````java
+    int tmpResult = "";
+    tmpResult += "\t" + each.getMovie().getTitle() + "\t" + thisAmount + "\n";
+    result += tmpResult;
+````
+
+### Del 1.E _(15 min)_
 
 Pilla isär loopen och pilla ut totalAmount-beräkningen till egen loop.
 
