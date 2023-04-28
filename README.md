@@ -36,6 +36,9 @@ att göra det själv och att låta ditt IDE göra det åt dig.
 
 ### Del 1.B
 - Flytta den nya metoden till Rental
+- Byt namn till exempelvis charge()
+
+Varför gjorde vi denna refaktorisering?
 
 ### Del 1.C
 - Gör inline på anropet till den nya metoden i `Customer::statement`.
