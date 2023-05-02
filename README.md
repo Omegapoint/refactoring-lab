@@ -68,25 +68,34 @@ och kunna byta prissättning på filmerna efterhand. Kan vi förändra
 koden så att det blir lättare att stödja en sådan funktion?
 
 ### Del 2.A
-- Flytta metoden price/amount vidare från Rental till Movie.
-- Vi behöver bara rentaldays från rental.
+- Introducera en ny variabel för `getDaysRented()` (Vi behöver bara `daysRented` från rental.)
+- Extrahera en ny metod som exempelvis heter `chargeForDaysRented()`
+- Flytta metoderna `chargeForDaysRented()` och `charge()` vidare från Rental till Movie.
+- Bli av med Rental parameter beroendet i `chargeForDaysRented()`
 
 ### Del 2.B
-- Extrahera getPriceCode till lokal variabel
-- Extrahera _tillfällig_ metod priceForCategory(int daysRented, int priceCode)
+- Extrahera `getPriceCode()` till en lokal variabel
+- Extrahera _tillfällig_ metod `chargeForDaysAndPriceCode(int daysRented, int priceCode)`
+- Gör inline på `thisAmount`
 - Extrahera metoden till delegate PriceCalculatorImpl
 
 ### Del 2.C
-- Flytta initiering till konstruktor-parameter.
-- Skapa interface PriceCalculator
-- Kopiera PriceCalculatorImpl och döp till RegularPriceCalculator
-- Ta bort delar som ej har med REGULAR_PRICE_CODE ur switch
-- Byt ut till RegularPriceCalculator i test-konstruktor
+- Flytta initiering till konstruktor-parameter. Hur ser testet ut nu?
+- Skapa interface `PriceCalculator`
+- Kopiera `PriceCalculatorImpl` och döp till `RegularPriceCalculator`
+- Gör `chargeForDaysRentedAndPriceCode` i `PriceCalculatorImpl` publik
+- Ta bort delar som ej har med REGULAR_PRICE_CODE ur `switch`-satsen
+- Byt ut medlemsvariabeln `PriceCalculatorImpl` mot `PriceCalculator` interfacet i `Movie`
+- Byt ut till `RegularPriceCalculator` i test-konstruktor
 
 ### Del 2.D
-- Lägg till metod för att ändra beräkningsalgoritm
-- Rensa upp switch statements
-- Safe delete på priceCode i PriceCalculator::amountForCategory
+- Gör motsvarande för Children och New Release som gjordes för Regular
+- Kör testerna
+
+### Del 2.E
+- Lägg till metod för att ändra calculator
+- Ta bort switch statement
+- Safe delete på priceCode
 
 Kodlukter:
 
@@ -100,4 +109,3 @@ Kodlukter:
 - https://refactoring.com/catalog
 - Joshua Kerievsky: Refactoring to Patterns 1st Edition
 - https://refactoring.guru
-
