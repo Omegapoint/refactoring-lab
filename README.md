@@ -31,24 +31,35 @@ Kodlukter:
 - Tillfälliga variabler
 
 ### Del 1.A
-- Bryt ut `switch`-satsen ur loopen till en egen metod. Testa skillnaden med
-  att göra det själv och att låta ditt IDE göra det åt dig.
+- Bryt ut `switch`-satsen ur loopen till en egen metod. Testa skillnaden med 
+att göra det själv och att låta ditt IDE göra det åt dig.
 
 ### Del 1.B
 - Flytta den nya metoden till Rental
+- Byt namn på den nya metoden till exempelvis `charge()`
+
+Varför gjorde vi denna refaktorisering?
 
 ### Del 1.C
-- Gör inline på anropet till den nya metoden i `Customer::statement`.
+- Gör inline på anropet till den nya metoden `charge()` i `Customer::statement`.
 - Byt ++ mot +=
-- Summera till en temp-variabel och lägg till tempvariabeln till summan
-- Bryt ut varje beräkning till en egen metod.
-- Flytta varje ny metod till Rental
+- Summera till en temp-variabel (`tmpPoints`) och lägg till temp-variabeln till summan
+- Bryt ut beräkningen av `frequentRenterPoints` till en egen metod.
+- Namnge metoden exempelvis `getFrequentRenterPoints`
+- Gör inline på `tmpPoints` variabeln
+- Flytta den nya metoden till `Rental`
 
 ### Del 1.D
-- Pilla isär loopen till en loop per beräkning.
-- Bryt ut varje loop till en egen metod.
+- Summera till en temp-variabel (`tmpResult`) och lägg till temp-variabeln till summan
+- Bryt ut beräkningen av `result` till en egen metod.
+- Namnge metoden exempelvis `getRentalFigures`
+- Gör inline på `tmpResult` variabeln
+- Flytta den nya metoden till `Rental`
+
+### Del 1.E
+- Pilla isär loopen till en loop per beräkning. 
+- Bryt ut varje loop till en egen metod. Glöm inte att få med den lokala variabeln
 - EXTRA: Bygg om looparna till att använda streams.
-- Ersätt temp-variabler med query.
 
 ## Kata 2: Isolera prisberäkningen.
 
@@ -78,7 +89,7 @@ koden så att det blir lättare att stödja en sådan funktion?
 - Byt ut till `RegularPriceCalculator` i test-konstruktor
 
 ### Del 2.D
-- Göt motsvarande för Children och New Release som gjordes för Regular
+- Gör motsvarande för Children och New Release som gjordes för Regular
 - Kör testerna
 
 ### Del 2.E
@@ -98,4 +109,3 @@ Kodlukter:
 - https://refactoring.com/catalog
 - Joshua Kerievsky: Refactoring to Patterns 1st Edition
 - https://refactoring.guru
-
