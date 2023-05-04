@@ -70,7 +70,7 @@ koden så att det blir lättare att stödja en sådan funktion?
 ### Del 2.A
 - Introducera en ny variabel för `getDaysRented()` (Vi behöver bara `daysRented` från rental.)
 - Extrahera en ny metod som exempelvis heter `chargeForDaysRented()`
-- Flytta metoderna `chargeForDaysRented()` och `charge()` vidare från Rental till Movie.
+- Flytta metoden `chargeForDaysRented()` vidare från Rental till Movie.
 - Bli av med Rental parameter beroendet i `chargeForDaysRented()`
 
 ### Del 2.B
