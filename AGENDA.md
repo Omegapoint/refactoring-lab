@@ -27,8 +27,6 @@ Ordets betydelse innebär att i träningens rörelsemönster eftersträva perfek
 Poängen med kata är att så grundligt lära in de tekniker som finns i katan,
 att de sedan snabbt och korrekt kan användas i en uppkommen nödvärns-situation eller tävling."
 
-Det är också ett släkte plattmaskar. Och ett vattendrag i Centralafrikanska republiken.
-
 ---
 
 ## Genomgång (55 min/1h 25 min)
@@ -48,6 +46,8 @@ Se till att alla har hittat repot: https://github.com/omegapoint/refactor-lab
 ### Del 1.A _(10 min)_
 
 (demo/labb 10 min, disussion, demo/labb 10 min, diskussion, demo/labb 10 min, diskussion)
+
+_Förklara lite snabbt vad hela programmet gör_
 
 _Förklara lite snabbt (visa) vad statement metoden gör_
 
@@ -144,7 +144,7 @@ och fytta den nya metoden med move method till Rental
 Låt dem göra samma lika för beräkningen av figures
 
 ````java
-    int tmpResult = "";
+    String tmpResult = "";
     tmpResult += "\t" + each.getMovie().getTitle() + "\t" + thisAmount + "\n";
     result += tmpResult;
 ````
@@ -153,9 +153,9 @@ Låt dem göra samma lika för beräkningen av figures
 
 Pilla isär loopen och pilla ut totalAmount-beräkningen till egen loop.
 
-När man får en metod som tar in en totalAmount och skickar tillbaka en totalamount. för att undvika skapa en tmpvariabel
-tmpAmount för totalamount och sedan tilldela den efter loopen från värdet av tmpAmount. Då när du tar extract method så
-kommer du inte få att den tar in samma sak som den returnerar.
+Börja med att försöka extrahera en metod bara på loopen. Då får man en metod som tar in en totalAmount och skickar tillbaka en totalamount. 
+För att undvika skapa en tmpvariabel tmpAmount för totalamount och sedan tilldela den efter loopen från värdet av tmpAmount, behöver vi då ta med huvudvariabeln totalAmount. 
+Då när du tar extract method så får du en fin metod som inta tar något argument.
 
 Ska denna då flyttas till Rentals? Nej för den handhar flera olika rentals.
 
